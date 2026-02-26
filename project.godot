@@ -41,7 +41,7 @@ movie_writer/movie_file="movie_captures/metroidvania_magical_girl.ogv"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/hyper-godot-commons/plugin.cfg", "res://addons/maaacks_menus_template/plugin.cfg")
+enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/hyper-godot-commons/plugin.cfg", "res://addons/maaacks_menus_template/plugin.cfg", "res://addons/tile_bit_tools/plugin.cfg")
 
 [global_group]
 
