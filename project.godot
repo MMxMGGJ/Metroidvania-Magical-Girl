@@ -28,6 +28,11 @@ ProjectMusicController="*uid://r5t485lr3p7t"
 ProjectUISoundController="*uid://cc37235kj4384"
 SceneManager="*uid://dlx0xmlayoxgh"
 
+[display]
+
+window/size/viewport_width=2560
+window/size/viewport_height=1440
+
 [editor]
 
 movie_writer/video_quality=0.9

@@ -29,7 +29,18 @@ target_area_name = "LevelTransition2"
 [node name="Area2D" parent="LevelTransition" index="0" unique_id=1619916866]
 scale = Vector2(-1, 8)
 
+[node name="LevelTransition2" parent="." unique_id=2106081808 instance=ExtResource("3_hhqn0")]
+position = Vector2(64, -32)
+size = 8
+location = 2
+target_level_path = "uid://bbj3v3mj5r4j6"
+target_area_name = "LevelTransition2"
+
+[node name="Area2D" parent="LevelTransition2" index="0" unique_id=1619916866]
+scale = Vector2(8, 1)
+
 [node name="PlayerCharacter" parent="." unique_id=987239512 instance=ExtResource("4_miayr")]
 position = Vector2(96, 0)
 
 [editable path="LevelTransition"]
+[editable path="LevelTransition2"]

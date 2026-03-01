@@ -33,3 +33,10 @@ position = Vector2(32, 0)
 size = 7
 location = 1
 target_level_path = "uid://b05kijh1ggu3d"
+
+[node name="LevelTransition2" parent="." unique_id=215675799 instance=ExtResource("5_isqxq")]
+position = Vector2(-336, 0)
+size = 7
+location = 3
+target_level_path = "uid://biegv4w8631nk"
+target_area_name = "LevelTransition2"

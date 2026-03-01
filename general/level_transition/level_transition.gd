@@ -27,6 +27,11 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 
+	# Always initialize area at runtime
+	# (since setter only works at edit time, and Editable Children is generally disabled so changes
+	# on Area2D are not saved in the scene)
+	apply_area_settings()
+
 	SceneManager.new_scene_ready.connect(_on_new_scene_ready)
 	SceneManager.load_scene_finished.connect(_on_load_scene_finished)
 
@@ -60,22 +65,33 @@ func get_offset(player_character: PlayerCharacter) -> Vector2:
 		offset.y = player_pos.y - global_position.y
 
 		if location == SIDE.LEFT:
-			offset.x = -12.0
+			offset.x = -40.0
 		else:
-			offset.x = 12.0
+			offset.x = 40.0
 	else:
 		# Preserve relative X when crossing horizontal gate
 		offset.x = player_pos.x - global_position.x
 
 		if location == SIDE.TOP:
 			# Origin is at character bottom so doesn't need a lot of offset
-			offset.y = -2.0
+			offset.y = -10.0
 		else:
 			# On the opposite, here we need a lot of offset to cover distance head -> feet
-			offset.x = 48.0
+			offset.y = 20.0
 
 	return offset
 
+
+func get_transition_direction() -> String:
+	match location:
+		SIDE.LEFT:
+			return "left"
+		SIDE.RIGHT:
+			return "right"
+		SIDE.TOP:
+			return "up"
+		_:
+			return "down"
 
 
 func _on_new_scene_ready(target_name: String, offset: Vector2) -> void:
@@ -90,10 +106,11 @@ func _on_load_scene_finished() -> void:
 	# to avoid player character accidentally chain-triggering level transitions
 	# if spawning at the wrong place
 
-	# Note: We must wait 1 extra frame on top of scene_manager.transition_scene before connecting signal
-	# because Area2D seems to add an extra frame of delay in processing that the Player Character is gone
+	# Note: We must wait 2 frames before connecting signal because Area2D adds an extra frame of
+	# delay in processing that the Player Character is gone, as explained in Metroidvania tutorial
 	# Note: unlike Metroidvania tutorial, we await *before* connect, in counterpart, no need to
 	# temporarily disable area_2d.monitoring
+	await get_tree().physics_frame
 	await get_tree().physics_frame
 	area_2d.body_entered.connect(_on_area_2d_body_entered)
 
@@ -101,4 +118,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	# in principle, we should check that body is really Player
 	var player_character := body as PlayerCharacter
 	if player_character:
-		SceneManager.transition_scene(target_level_path, target_area_name, get_offset(player_character), "left")
+		SceneManager.transition_scene(target_level_path, target_area_name, get_offset(player_character), get_transition_direction())

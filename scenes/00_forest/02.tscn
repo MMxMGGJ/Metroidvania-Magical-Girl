@@ -25,9 +25,6 @@ position = Vector2(-64, 0)
 size = 8
 target_level_path = "uid://bbj3v3mj5r4j6"
 
-[node name="Area2D" parent="LevelTransition" index="0" unique_id=1619916866]
-scale = Vector2(-1, 8)
-
 [node name="LevelTransition2" parent="." unique_id=1559213201 instance=ExtResource("5_sq0mh")]
 position = Vector2(32, 0)
 size = 4
@@ -35,6 +32,4 @@ location = 1
 target_level_path = "uid://biegv4w8631nk"
 
 [node name="PlayerCharacter" parent="." unique_id=987239512 instance=ExtResource("3_hdosa")]
-position = Vector2(96, 0)
-
-[editable path="LevelTransition"]
+position = Vector2(-16, 0)
