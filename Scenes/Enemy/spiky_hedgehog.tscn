@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://vssuaelww38q"]
+
+[ext_resource type="Script" uid="uid://bvr62hjekm4bu" path="res://Scenes/Enemy/spiky_hedgehog.gd" id="1_80c6c"]
+[ext_resource type="Texture2D" uid="uid://c14gg127rh8rc" path="res://Sprites/Walk.png" id="1_ruk7r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80c6c"]
+atlas = ExtResource("1_ruk7r")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1ivo"]
+atlas = ExtResource("1_ruk7r")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6iemo"]
+atlas = ExtResource("1_ruk7r")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73r2a"]
+atlas = ExtResource("1_ruk7r")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4mcdg"]
+atlas = ExtResource("1_ruk7r")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27gjx"]
+atlas = ExtResource("1_ruk7r")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4nihj"]
+atlas = ExtResource("1_ruk7r")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32fk7"]
+atlas = ExtResource("1_ruk7r")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htiod"]
+atlas = ExtResource("1_ruk7r")
+region = Rect2(1024, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ojll"]
+atlas = ExtResource("1_ruk7r")
+region = Rect2(1152, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3xpx0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80c6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1ivo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6iemo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73r2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4mcdg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27gjx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4nihj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32fk7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htiod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ojll")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 10.0
+}]
+
+[node name="SpikyHedgehog" type="CharacterBody2D" unique_id=55680957]
+script = ExtResource("1_80c6c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2047255667]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=838559709]
+sprite_frames = SubResource("SpriteFrames_3xpx0")
+animation = &"Walk"
+frame = 5
+frame_progress = 0.48512492
+
+[node name="RayCast2D" type="RayCast2D" parent="AnimatedSprite2D" unique_id=1920821994]
+target_position = Vector2(-100, 0)
