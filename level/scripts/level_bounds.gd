@@ -3,7 +3,7 @@
 class_name LevelBounds
 extends Node2D
 
-@export_range(2560, 2560 * 3, 96, "or_greater", "suffix:px") var width: int = 2560:
+@export_range(2496, 2688 * 3, 96, "or_greater", "suffix:px") var width: int = 2688:
 	set = _on_width_changed
 @export_range(1440, 1440 * 3, 96, "or_greater", "suffix:px") var height: int = 1440:
 	set = _on_height_changed
