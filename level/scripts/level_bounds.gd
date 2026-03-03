@@ -34,8 +34,8 @@ func _draw() -> void:
 	if Engine.is_editor_hint():
 		# draw a box
 		var r := Rect2(Vector2.ZERO, Vector2(width, height))
-		draw_rect(r, Color(0.0, 0.45, 1.0, 0.6), false, 3.0)
-		draw_rect(r, Color(0.0, 0.75, 1.0), false, 1.0)
+		draw_rect(r, Color(0.0, 0.45, 1.0, 0.6), false, 24.0)
+		draw_rect(r, Color(0.0, 0.75, 1.0), false, 8.0)
 	pass
 
 
