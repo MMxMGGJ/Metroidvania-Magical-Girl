@@ -27,13 +27,12 @@ var room: Room
 
 
 func _ready() -> void:
+	# Always initialize area at both edit time (in case of Reload Saved Scene) and
+	# runtime (for normal play, since Editable Children is generally off and won't save area changes)
+	apply_area_settings()
+
 	if Engine.is_editor_hint():
 		return
-
-	# Always initialize area at runtime
-	# (since setter only works at edit time, and Editable Children is generally disabled so changes
-	# on Area2D are not saved in the scene)
-	apply_area_settings()
 
 	SceneManager.new_scene_ready.connect(_on_new_scene_ready)
 	SceneManager.load_scene_finished.connect(_on_load_scene_finished)
