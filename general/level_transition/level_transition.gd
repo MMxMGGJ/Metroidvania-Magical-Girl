@@ -20,6 +20,9 @@ var size: int = 2:
 var target_level: PackedScene
 @export var target_area_name: String = "LevelTransition"
 
+## Room containing this LevelTransition
+var room: Room
+
 @onready var area_2d: Area2D = $Area2D
 
 
@@ -101,6 +104,7 @@ func _on_new_scene_ready(target_name: String, offset: Vector2) -> void:
 		var player := get_tree().get_first_node_in_group(&"Player") as Node2D
 		player.global_position = global_position + offset
 
+
 func _on_load_scene_finished() -> void:
 	# Delay level transition trigger activation until scene is fully loaded
 	# to avoid player character accidentally chain-triggering level transitions
@@ -113,6 +117,7 @@ func _on_load_scene_finished() -> void:
 	await get_tree().physics_frame
 	await get_tree().physics_frame
 	area_2d.body_entered.connect(_on_area_2d_body_entered)
+
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	# in principle, we should check that body is really Player

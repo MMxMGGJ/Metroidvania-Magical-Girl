@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://mnlastt41gpl"]
+
+[ext_resource type="Script" uid="uid://clkc62uabyjc3" path="res://addons/hyper-godot-commons/audio/MusicManager.gd" id="1_j4ifr"]
+
+[node name="MusicManager" type="Node" unique_id=1040129042 node_paths=PackedStringArray("music_stream_player")]
+script = ExtResource("1_j4ifr")
+music_stream_player = NodePath("AudioStreamPlayer_BGM")
+
+[node name="AudioStreamPlayer_BGM" type="AudioStreamPlayer" parent="." unique_id=1065127732]
+bus = &"Music"

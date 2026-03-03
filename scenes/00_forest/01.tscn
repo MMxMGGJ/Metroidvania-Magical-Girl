@@ -1,12 +1,16 @@
 [gd_scene format=4 uid="uid://bbj3v3mj5r4j6"]
 
+[ext_resource type="Script" uid="uid://vpm3x2tjjqfg" path="res://scripts/level/room.gd" id="1_7b6ed"]
 [ext_resource type="TileSet" uid="uid://c258p6volkxfc" path="res://scenes/tilesets/tile_set_forgotten_forest.tres" id="1_e02wx"]
+[ext_resource type="AudioStream" uid="uid://cigrwnxqrk3gt" path="res://audio/bgm/MGMV BGM- Underground Temple.ogg" id="2_iswrs"]
 [ext_resource type="TileSet" uid="uid://bpxlukeix7tsg" path="res://proto/TileSet/tile_set_tiny.tres" id="2_vondf"]
 [ext_resource type="Script" uid="uid://wu6rr0n671o" path="res://general/scripts/level_bounds.gd" id="3_jm2rk"]
 [ext_resource type="PackedScene" uid="uid://bpjghqb0qipay" path="res://general/player_spawn/player_spawn.tscn" id="5_7b6ed"]
 [ext_resource type="PackedScene" uid="uid://ceh31ndd32nom" path="res://general/level_transition/level_transition.tscn" id="5_isqxq"]
 
 [node name="01" type="Node2D" unique_id=1458348815]
+script = ExtResource("1_7b6ed")
+bgm = ExtResource("2_iswrs")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=199925514]
 visible = false
