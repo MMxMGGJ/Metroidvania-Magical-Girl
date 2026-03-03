@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://b05kijh1ggu3d"]
 
 [ext_resource type="TileSet" uid="uid://bpxlukeix7tsg" path="res://proto/TileSet/tile_set_tiny.tres" id="2_cfhwj"]
+[ext_resource type="PackedScene" uid="uid://bpjghqb0qipay" path="res://general/player_spawn/player_spawn.tscn" id="4_5vibl"]
 [ext_resource type="Script" uid="uid://wu6rr0n671o" path="res://general/scripts/level_bounds.gd" id="4_uybqy"]
 [ext_resource type="PackedScene" uid="uid://ceh31ndd32nom" path="res://general/level_transition/level_transition.tscn" id="5_sq0mh"]
 
@@ -29,3 +30,6 @@ position = Vector2(32, 0)
 size = 4
 location = 1
 target_level_path = "uid://biegv4w8631nk"
+
+[node name="PlayerSpawn" parent="." unique_id=1369205458 instance=ExtResource("4_5vibl")]
+position = Vector2(0, -16)

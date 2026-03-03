@@ -2,10 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://cynbbvp07m61q" path="res://proto/sprites/Paladin/paladin_tiny_Idle_spritesheet.png" id="1_2y6re"]
 [ext_resource type="Script" uid="uid://cao8rukt7jhm8" path="res://general/player_spawn/player_spawn.gd" id="1_h1cw5"]
+[ext_resource type="PackedScene" uid="uid://d12mkm1y1nyj0" path="res://proto/PlayerCharacter.tscn" id="2_fjrrl"]
 
 [node name="PlayerSpawn" type="Node2D" unique_id=1369205458]
 z_index = 100
 script = ExtResource("1_h1cw5")
+player_prefab = ExtResource("2_fjrrl")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1477711334]
 modulate = Color(0, 3.045841, 0.25361437, 1)

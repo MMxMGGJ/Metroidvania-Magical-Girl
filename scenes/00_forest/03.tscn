@@ -3,6 +3,7 @@
 [ext_resource type="TileSet" uid="uid://bpxlukeix7tsg" path="res://proto/TileSet/tile_set_tiny.tres" id="1_5qge1"]
 [ext_resource type="Script" uid="uid://wu6rr0n671o" path="res://general/scripts/level_bounds.gd" id="2_ob1j7"]
 [ext_resource type="PackedScene" uid="uid://ceh31ndd32nom" path="res://general/level_transition/level_transition.tscn" id="3_hhqn0"]
+[ext_resource type="PackedScene" uid="uid://bpjghqb0qipay" path="res://general/player_spawn/player_spawn.tscn" id="4_5qge1"]
 
 [node name="03" type="Node2D" unique_id=1458348815]
 
@@ -37,6 +38,9 @@ target_area_name = "LevelTransition2"
 
 [node name="Area2D" parent="LevelTransition2" index="0" unique_id=1619916866]
 scale = Vector2(8, 1)
+
+[node name="PlayerSpawn" parent="." unique_id=1369205458 instance=ExtResource("4_5qge1")]
+position = Vector2(0, -32)
 
 [editable path="LevelTransition"]
 [editable path="LevelTransition2"]
