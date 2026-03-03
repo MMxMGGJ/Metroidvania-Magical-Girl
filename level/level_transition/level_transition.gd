@@ -6,7 +6,7 @@ extends Node2D
 enum SIDE { LEFT, RIGHT, UP, DOWN }
 
 @export_range(2, 12, 1, "or_greater")
-var size: int = 2:
+var size: int = 3:
 	set(value):
 		size = value
 		apply_area_settings()
