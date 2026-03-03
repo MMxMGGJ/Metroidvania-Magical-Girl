@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5kc7b27pjs87"
-path="res://.godot/imported/level_transition.svg-b546bfd71d2ad72287c58dd393c8aae9.ctex"
+uid="uid://btebjh1joah4q"
+path="res://.godot/imported/player_spawn.svg-d53b4f521653583042e0eb0f5bb2109e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://general/icons/level_transition.svg"
-dest_files=["res://.godot/imported/level_transition.svg-b546bfd71d2ad72287c58dd393c8aae9.ctex"]
+source_file="res://level/icons/player_spawn.svg"
+dest_files=["res://.godot/imported/player_spawn.svg-d53b4f521653583042e0eb0f5bb2109e.ctex"]
 
 [params]
 

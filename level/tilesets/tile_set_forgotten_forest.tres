@@ -1,9 +1,9 @@
 [gd_resource type="TileSet" format=3 uid="uid://c258p6volkxfc"]
 
-[ext_resource type="Texture2D" uid="uid://gt6umepdrocs" path="res://scenes/tilesets/sprites/forgotten_forest_example_tileset.png" id="1_dtyjx"]
+[ext_resource type="Texture2D" uid="uid://gt6umepdrocs" path="res://level/tilesets/sprites/forgotten_forest_example_tileset.png" id="1_7x8fb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_33a3t"]
-texture = ExtResource("1_dtyjx")
+texture = ExtResource("1_7x8fb")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 1:0/0 = 0
