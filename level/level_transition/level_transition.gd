@@ -3,7 +3,7 @@
 class_name LevelTransition
 extends Node2D
 
-enum SIDE { LEFT, RIGHT, TOP, DOWN }
+enum SIDE { LEFT, RIGHT, UP, DOWN }
 
 @export_range(2, 12, 1, "or_greater")
 var size: int = 2:
@@ -52,7 +52,7 @@ func apply_area_settings() -> void:
 			area_2d.scale.x = 1
 	else:
 		area_2d.scale.x = size
-		if location == SIDE.TOP:
+		if location == SIDE.UP:
 			area_2d.scale.y = 1
 		else:
 			area_2d.scale.y = -1
@@ -74,7 +74,7 @@ func get_offset(player_character: PlayerCharacter) -> Vector2:
 		# Preserve relative X when crossing horizontal gate
 		offset.x = player_pos.x - global_position.x
 
-		if location == SIDE.TOP:
+		if location == SIDE.UP:
 			# Origin is at character bottom so doesn't need a lot of offset
 			offset.y = -10.0
 		else:
@@ -90,7 +90,7 @@ func get_transition_direction() -> String:
 			return "left"
 		SIDE.RIGHT:
 			return "right"
-		SIDE.TOP:
+		SIDE.UP:
 			return "up"
 		_:
 			return "down"
