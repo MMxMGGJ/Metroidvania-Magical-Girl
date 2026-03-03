@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://bvr62hjekm4bu" path="res://Scenes/Enemy/spiky_hedgehog.gd" id="1_80c6c"]
 [ext_resource type="Texture2D" uid="uid://c14gg127rh8rc" path="res://Sprites/Walk.png" id="1_ruk7r"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_80c6c"]
+height = 85.612404
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_80c6c"]
 atlas = ExtResource("1_ruk7r")
 region = Rect2(0, 0, 128, 128)
@@ -85,6 +88,9 @@ animations = [{
 script = ExtResource("1_80c6c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2047255667]
+position = Vector2(-4.875, 18.78)
+scale = Vector2(1.29, 1.29)
+shape = SubResource("CapsuleShape2D_80c6c")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=838559709]
 sprite_frames = SubResource("SpriteFrames_3xpx0")
@@ -93,4 +99,10 @@ frame = 5
 frame_progress = 0.48512492
 
 [node name="RayCast2D" type="RayCast2D" parent="AnimatedSprite2D" unique_id=1920821994]
-target_position = Vector2(-100, 0)
+target_position = Vector2(-1000, 0)
+
+[node name="Timer" type="Timer" parent="." unique_id=955166968]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

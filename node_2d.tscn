@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://d2e7kv7v1kbev"]
+
+[ext_resource type="PackedScene" uid="uid://br6jiypvac77c" path="res://levels/Secret_Corridor2.scn" id="1_epypp"]
+[ext_resource type="PackedScene" uid="uid://vssuaelww38q" path="res://Scenes/Enemy/spiky_hedgehog.tscn" id="2_0hol4"]
+[ext_resource type="PackedScene" uid="uid://cixytu28x4wl3" path="res://Scenes/Player/dummy_target.tscn" id="3_epypp"]
+
+[node name="Node2D" type="Node2D" unique_id=518292352]
+
+[node name="SpikyHedgehog" parent="." unique_id=55680957 node_paths=PackedStringArray("dummy_target") instance=ExtResource("2_0hol4")]
+position = Vector2(1584, 1476)
+collision_layer = 7
+collision_mask = 7
+platform_wall_layers = 1
+dummy_target = NodePath("../DummyTarget")
+
+[node name="Camera2D" type="Camera2D" parent="SpikyHedgehog" unique_id=42547486]
+
+[node name="Secret_Corridor2" parent="." unique_id=1020235620 instance=ExtResource("1_epypp")]
+
+[node name="DummyTarget" parent="." unique_id=550574579 instance=ExtResource("3_epypp")]
+position = Vector2(254, 1562.9999)
+scale = Vector2(2.79, 2.79)
