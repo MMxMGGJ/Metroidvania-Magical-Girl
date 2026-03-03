@@ -178,4 +178,3 @@ target_position = Vector2(0, 6)
 collision_mask = 2
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2019083215]
-zoom = Vector2(2, 2)
