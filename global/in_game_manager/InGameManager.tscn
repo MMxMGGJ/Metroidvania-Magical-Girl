@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c8jjy0cj0ybnx"]
+
+[ext_resource type="Script" uid="uid://dmwb60pubrrc5" path="res://global/in_game_manager/InGameManager.gd" id="1_8wwfq"]
+[ext_resource type="PackedScene" uid="uid://da0u2qpae01h4" path="res://global/audio/SFXManager.tscn" id="2_u8eyg"]
+
+[node name="InGameManager" type="Node" unique_id=1962702852]
+script = ExtResource("1_8wwfq")
+metadata/_custom_type_script = "uid://dmwb60pubrrc5"
+
+[node name="SFXManager" parent="." unique_id=838317786 instance=ExtResource("2_u8eyg")]
