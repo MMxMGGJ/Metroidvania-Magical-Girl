@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://wu6rr0n671o" path="res://level/scripts/level_bounds.gd" id="4_qgy8w"]
 [ext_resource type="PackedScene" uid="uid://ceh31ndd32nom" path="res://level/level_transition/level_transition.tscn" id="5_a8q0y"]
 [ext_resource type="PackedScene" uid="uid://bpjghqb0qipay" path="res://level/player_spawn/player_spawn.tscn" id="6_umthg"]
+[ext_resource type="PackedScene" uid="uid://klpcfpujfjff" path="res://character/player/PlayerCharacter.tscn" id="7_3kbio"]
 
 [node name="00" type="Node2D" unique_id=1458348815]
 script = ExtResource("1_83m7y")
@@ -31,3 +32,5 @@ target_area_name = "LevelTransitionLeft"
 
 [node name="PlayerSpawn" parent="." unique_id=1369205458 instance=ExtResource("6_umthg")]
 position = Vector2(1152, 192)
+
+[node name="PlayerCharacter" parent="." unique_id=874847160 instance=ExtResource("7_3kbio")]
