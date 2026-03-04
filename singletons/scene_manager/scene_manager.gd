@@ -1,15 +1,14 @@
 extends CanvasLayer
 
-signal load_scene_started
+signal transition_scene_started
 signal new_scene_ready(target_name: String, offset: Vector2)
+signal transition_scene_finished
 signal load_scene_finished
 
 @onready var fade: Control = $Fade
 
 func _ready() -> void:
 	fade.visible = false
-	await get_tree().process_frame
-	load_scene_finished.emit()
 
 
 func transition_scene(new_scene: String, target_area: String, player_offset: Vector2, dir: String) -> void:
@@ -17,7 +16,7 @@ func transition_scene(new_scene: String, target_area: String, player_offset: Vec
 
 	var fade_pos := get_fade_pos(dir)
 
-	load_scene_started.emit()
+	transition_scene_started.emit()
 
 	# fade old scene out
 	fade.visible = true
@@ -36,6 +35,7 @@ func transition_scene(new_scene: String, target_area: String, player_offset: Vec
 	fade.visible = false
 	get_tree().paused = false
 
+	transition_scene_finished.emit()
 	load_scene_finished.emit()
 
 
