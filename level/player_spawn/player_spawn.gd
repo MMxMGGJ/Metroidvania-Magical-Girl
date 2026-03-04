@@ -7,6 +7,8 @@ extends Node2D
 
 
 func _ready() -> void:
+	DebugUtils.assert_member_is_set(self, player_prefab, "player_prefab")
+
 	visible = false
 
 	# Not really needed since if player comes from another scene, it's already here,

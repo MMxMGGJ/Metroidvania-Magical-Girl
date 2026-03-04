@@ -1,14 +1,15 @@
 [gd_scene format=3 uid="uid://bpjghqb0qipay"]
 
-[ext_resource type="Texture2D" uid="uid://cynbbvp07m61q" path="res://proto/sprites/Paladin/paladin_tiny_Idle_spritesheet.png" id="1_2y6re"]
 [ext_resource type="Script" uid="uid://cao8rukt7jhm8" path="res://level/player_spawn/player_spawn.gd" id="1_h1cw5"]
-[ext_resource type="PackedScene" uid="uid://d12mkm1y1nyj0" path="res://proto/PlayerCharacter.tscn" id="2_fjrrl"]
+[ext_resource type="PackedScene" uid="uid://klpcfpujfjff" path="res://character/player/PlayerCharacter.tscn" id="2_wb7r5"]
+[ext_resource type="Texture2D" uid="uid://tuh2s8l46qck" path="res://icon.svg" id="3_vwyco"]
 
 [node name="PlayerSpawn" type="Node2D" unique_id=1369205458]
 z_index = 100
 script = ExtResource("1_h1cw5")
-player_prefab = ExtResource("2_fjrrl")
+player_prefab = ExtResource("2_wb7r5")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1477711334]
 modulate = Color(0, 3.045841, 0.25361437, 1)
-texture = ExtResource("1_2y6re")
+position = Vector2(0, -1)
+texture = ExtResource("3_vwyco")
