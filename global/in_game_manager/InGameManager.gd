@@ -9,6 +9,9 @@ extends Node
 ##     debug_damage_boss
 
 
+@export var player_character_prefab: PackedScene
+
+
 var player_character: PlayerCharacter
 
 
@@ -16,7 +19,7 @@ var player_character: PlayerCharacter
 
 
 func _ready():
-	pass
+	DebugUtils.assert_member_is_set(self, player_character_prefab, "player_character_prefab")
 
 
 func _unhandled_input(event: InputEvent):
@@ -28,3 +31,11 @@ func _unhandled_input(event: InputEvent):
 			var boss: Boss = get_tree().get_first_node_in_group("boss")
 			if boss:
 				boss.health.try_receive_damage(1, Enums.DamageType.NORMAL)
+
+
+func spawn_player_character_and_start_ingame(spawn_position: Vector2):
+		# Spawn player character at passed position
+		NodeUtils.instantiate_under_at(player_character_prefab, get_tree().root, spawn_position)
+
+		# In-game start routine
+		SceneManager.load_scene_finished.emit()

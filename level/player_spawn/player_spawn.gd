@@ -19,7 +19,4 @@ func _ready() -> void:
 	var player := get_tree().get_first_node_in_group(&"Player")
 
 	if not player:
-		# Instantiate a new instance of player at spawn position
-		NodeUtils.instantiate_under_at(player_prefab, get_tree().root, global_position)
-		# In-game start routine
-		SceneManager.load_scene_finished.emit()
+		InGameManager.spawn_player_character_and_start_ingame(global_position)
