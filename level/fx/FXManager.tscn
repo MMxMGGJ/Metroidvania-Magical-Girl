@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ccx703wwm1ckf"]
+
+[ext_resource type="Script" uid="uid://6co4xe85xn26" path="res://level/fx/FXManager.gd" id="1_shjr8"]
+
+[node name="FXManager" type="Node" unique_id=1224021180]
+script = ExtResource("1_shjr8")
+metadata/_custom_type_script = "uid://6co4xe85xn26"

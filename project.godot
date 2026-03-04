@@ -50,6 +50,7 @@ enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/hyper-god
 
 Player=""
 sfx_manager=""
+fx_manager=""
 
 [input]
 

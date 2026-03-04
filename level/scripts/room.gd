@@ -23,4 +23,7 @@ func _ready() -> void:
 
 
 func _on_load_scene_finished():
+	# Assign new current room
+	InGameManager.room = self
+
 	MusicManager.play_music(bgm)
