@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://dgtjuh5dhnow" path="res://character/player/states/PlayerCharacterStateIdleRun.gd" id="4_4yu7e"]
 [ext_resource type="SpriteFrames" uid="uid://pbdcqaa8r6y1" path="res://character/player/animations/sprite_frames_player_character.tres" id="4_72uy0"]
 [ext_resource type="Script" uid="uid://dxg2poxsk8tgt" path="res://character/player/states/PlayerCharacterStateFall.gd" id="5_4yu7e"]
+[ext_resource type="Script" uid="uid://byr408dhtl1wq" path="res://character/player/states/PlayerCharacterStateJump.gd" id="6_g7i8e"]
+[ext_resource type="AudioStream" uid="uid://5uyybxx036c" path="res://audio/sfx/SFX_Jump.ogg" id="7_0xanw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t1f2q"]
 size = Vector2(104, 257)
@@ -22,7 +24,6 @@ directed_parent = NodePath("DirectedParent")
 animated_sprite = NodePath("DirectedParent/AnimatedSprite2D")
 move_box_shape = NodePath("MoveBoxShape2D")
 hurt_box = NodePath("HurtBox")
-world_gravity = 30.0
 metadata/_custom_type_script = "uid://d2dg6lgxnwj7x"
 
 [node name="PlayerCharacterAnimationController" type="Node" parent="." unique_id=781347943 node_paths=PackedStringArray("character", "animation_player")]
@@ -43,6 +44,11 @@ metadata/_custom_type_script = "uid://dgtjuh5dhnow"
 [node name="PlayerCharacterStateFall" type="Node" parent="States" unique_id=288961433]
 script = ExtResource("5_4yu7e")
 metadata/_custom_type_script = "uid://dxg2poxsk8tgt"
+
+[node name="PlayerCharacterStateJump" type="Node" parent="States" unique_id=813086145]
+script = ExtResource("6_g7i8e")
+sfx = ExtResource("7_0xanw")
+metadata/_custom_type_script = "uid://byr408dhtl1wq"
 
 [node name="DirectedParent" type="Node2D" parent="." unique_id=849408829]
 

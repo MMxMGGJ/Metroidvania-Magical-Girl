@@ -101,25 +101,40 @@ extends CharacterBase
 		world_grounded_passive_decel_x = value
 		update_all_scaled_parameters()
 
+## Initial jump speed (world unit/s)
+@export var world_jump_speed: float = 1.5:
+	set(value):
+		world_jump_speed = value
+		update_all_scaled_parameters()
+
+## Velocity Y is set to the opposite of this value when character interrupts jump
+## This is also the hop (smallest jump) speed.
+## Must be less than jump_speed (the smaller, the faster character will reach speed Y = 0)
+## (world unit/s)
+@export var world_jump_interrupt_speed: float = 0.8:
+	set(value):
+		world_jump_interrupt_speed = value
+		update_all_scaled_parameters()
+
 
 @export_subgroup("Airborne")
 
 ## Custom gravity
 ## Default value is the default physics 2D gravity (world unit/s)
-@export var world_gravity: float = 9.80:
+@export var world_gravity: float = 30.0:
 	set(value):
 		world_gravity = value
 		update_all_scaled_parameters()
 
 ## Airborne acceleration (passive and active) along X (world unit/s^2)
-@export var world_airborne_accel_x: float = 4.0:
+@export var world_airborne_accel_x: float = 150.0:
 	set(value):
 		world_airborne_accel_x = value
 		update_all_scaled_parameters()
 
 ## Air drag factor to apply every frame (1 for no air drag)
 ## Remark: no world scaling, effect depends on FPS!
-@export var air_drag_factor_per_frame: float = 1.0
+@export var air_drag_factor_per_frame: float = 0.95
 
 
 # Parameters
@@ -135,23 +150,31 @@ var base_attributes := {}
 # State
 
 ## Max speed along X (px/s)
-var max_free_move_speed_x: float = 200.0
+var max_free_move_speed_x: float
 
 ## Grounded acceleration along X (px/s^2)
-var grounded_accel_x: float = 400
+var grounded_accel_x: float
 
 ## Grounded active deceleration along X (px/s^2)
-var grounded_active_decel_x: float = 1800
+var grounded_active_decel_x: float
 
 ## Grounded passive deceleration aka friction along X (px/s^2)
-var grounded_passive_decel_x: float = 168.75
+var grounded_passive_decel_x: float
+
+## Initial jump speed
+var jump_speed: float
+
+## Velocity Y is set to the opposite of this value when character interrupts jump
+## This is also the hop (smallest jump) speed.
+## Must be less than jump_speed (the smaller, the faster character will reach speed Y = 0)
+var jump_interrupt_speed: float
 
 ## Custom gravity
 ## Default value is the default physics 2D gravity
-var gravity: float = 980.0
+var gravity: float
 
 ## Airborne acceleration (passive and active) along X
-var airborne_accel_x: float = 337.5
+var airborne_accel_x: float
 
 ## Flag to track when deferred setup is over so we can start to process safely
 ## (this is only to avoid processing in an invalid state during the first frame)
@@ -244,6 +267,8 @@ func update_all_scaled_parameters():
 	grounded_accel_x = world_scale_factor * world_grounded_accel_x
 	grounded_active_decel_x = world_scale_factor * world_grounded_active_decel_x
 	grounded_passive_decel_x = world_scale_factor * world_grounded_passive_decel_x
+	jump_speed = world_jump_speed * world_grounded_passive_decel_x
+	jump_interrupt_speed = world_jump_interrupt_speed * world_grounded_passive_decel_x
 	gravity = world_scale_factor * world_gravity
 	airborne_accel_x = world_scale_factor * world_airborne_accel_x
 
