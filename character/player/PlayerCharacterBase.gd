@@ -278,11 +278,9 @@ func _unhandled_input(event: InputEvent):
 
 func _process(delta: float) -> void:
 	if OS.has_feature("debug") and enable_debug:
-		pass
-		# commented out until we install DebugDraw2D
-		#DebugDraw2D.begin_text_group("-- %s --" % name, 0, debug_color)
-		## show for only 1 frame to make sure it disappears immediately when disabling debug
-		#DebugDraw2D.set_text(" State", get_current_state_name(), 0, Color(0, 0, 0, 0), delta)
+		DebugDraw2D.begin_text_group("-- %s --" % name, 0, debug_color, true, 50, 45)
+		# show for only 1 frame to make sure it disappears immediately when disabling debug
+		DebugDraw2D.set_text(" State", get_current_state_name(), 0, Color(0, 0, 0, 0), delta)
 
 
 func _physics_process(delta: float):
