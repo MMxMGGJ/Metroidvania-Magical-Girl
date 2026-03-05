@@ -52,7 +52,6 @@ enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/gut/plug
 
 [global_group]
 
-Player=""
 sfx_manager=""
 fx_manager=""
 

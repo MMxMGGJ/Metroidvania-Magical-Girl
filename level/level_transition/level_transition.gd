@@ -20,6 +20,23 @@ var size: int = 3:
 var target_level: PackedScene
 @export var target_area_name: String = "LevelTransition"
 
+## Offset adding to player character position toward left when spawning from the right, to avoid
+## accidentally going back to the previous room
+@export var spawn_offset_left: float = 80.0
+
+## Offset adding to player character position toward right when spawning from the left, to avoid
+## accidentally going back to the previous room
+@export var spawn_offset_right: float = 80.0
+
+## Offset adding to player character position toward up when spawning from the down, to avoid
+## accidentally going back to the previous room
+@export var spawn_offset_up: float = 40.0
+
+## Offset adding to player character position toward down when spawning from the up, to avoid
+## accidentally going back to the previous room
+@export var spawn_offset_down: float = 300.0
+
+
 ## Room containing this LevelTransition
 var room: Room
 
@@ -67,19 +84,19 @@ func get_offset(player_character: PlayerCharacter) -> Vector2:
 		offset.y = player_pos.y - global_position.y
 
 		if location == SIDE.LEFT:
-			offset.x = -40.0
+			offset.x = -spawn_offset_left
 		else:
-			offset.x = 40.0
+			offset.x = spawn_offset_right
 	else:
 		# Preserve relative X when crossing horizontal gate
 		offset.x = player_pos.x - global_position.x
 
 		if location == SIDE.UP:
 			# Origin is at character bottom so doesn't need a lot of offset
-			offset.y = -10.0
+			offset.y = -spawn_offset_up
 		else:
 			# On the opposite, here we need a lot of offset to cover distance head -> feet
-			offset.y = 20.0
+			offset.y = spawn_offset_down
 
 	return offset
 
@@ -100,8 +117,13 @@ func _on_new_scene_ready(target_name: String, offset: Vector2) -> void:
 	# Position player
 	if target_name == name:
 		# This is the area where the player is respawning
-		var player := get_tree().get_first_node_in_group(&"Player") as Node2D
-		player.global_position = global_position + offset
+		var player_character: PlayerCharacter = InGameManager.player_character
+
+		if not player_character:
+			push_error("No player found in scene")
+			return
+
+		player_character.global_position = global_position + offset
 
 
 func _on_load_scene_finished() -> void:
