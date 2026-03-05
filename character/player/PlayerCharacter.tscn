@@ -6,6 +6,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://dmt344t4racll" path="res://character/player/animations/animation_library_player_character.res" id="3_lk3et"]
 [ext_resource type="Script" uid="uid://dgtjuh5dhnow" path="res://character/player/states/PlayerCharacterStateIdleRun.gd" id="4_4yu7e"]
 [ext_resource type="SpriteFrames" uid="uid://pbdcqaa8r6y1" path="res://character/player/animations/sprite_frames_player_character.tres" id="4_72uy0"]
+[ext_resource type="Script" uid="uid://dxg2poxsk8tgt" path="res://character/player/states/PlayerCharacterStateFall.gd" id="5_4yu7e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t1f2q"]
 size = Vector2(104, 257)
@@ -25,6 +26,7 @@ max_free_move_speed_x = 1000.0
 base_grounded_accel_x = 10000.0
 grounded_active_decel_x = 10000.0
 grounded_passive_decel_x = 10000.0
+gravity = 10000.0
 metadata/_custom_type_script = "uid://d2dg6lgxnwj7x"
 
 [node name="PlayerCharacterAnimationController" type="Node" parent="." unique_id=781347943 node_paths=PackedStringArray("character", "animation_player")]
@@ -41,6 +43,10 @@ libraries/ = ExtResource("3_lk3et")
 [node name="PlayerCharacterStateIdle" type="Node" parent="States" unique_id=1872110354]
 script = ExtResource("4_4yu7e")
 metadata/_custom_type_script = "uid://dgtjuh5dhnow"
+
+[node name="PlayerCharacterStateFall" type="Node" parent="States" unique_id=288961433]
+script = ExtResource("5_4yu7e")
+metadata/_custom_type_script = "uid://dxg2poxsk8tgt"
 
 [node name="DirectedParent" type="Node2D" parent="." unique_id=849408829]
 

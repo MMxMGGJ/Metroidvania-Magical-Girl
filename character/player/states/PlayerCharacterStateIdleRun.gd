@@ -47,6 +47,9 @@ func on_physics_process(delta: float):
 
 	character.move_grounded_free(delta)
 
+	if not character.is_on_floor():
+		character.set_next_state_by_name(&"Fall")
+
 
 # override
 func on_exit():

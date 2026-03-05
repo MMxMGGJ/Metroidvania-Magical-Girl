@@ -3,6 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://djnr5rr8x2kfl" path="res://character/player/sprites/proto spritesheet_player_character_Idle 28% (mockup scale).webp" id="1_73jd3"]
 [ext_resource type="Texture2D" uid="uid://kr6vlu50knw4" path="res://character/player/sprites/proto spritesheet_player_character_Run 28% (mockup scale).webp" id="2_xlb1x"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xlb1x"]
+atlas = ExtResource("2_xlb1x")
+region = Rect2(423, 0, 423, 302)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_lk3et"]
 atlas = ExtResource("1_73jd3")
 region = Rect2(0, 0, 423, 302)
@@ -93,6 +97,14 @@ region = Rect2(0, 0, 423, 302)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xlb1x")
+}],
+"loop": true,
+"name": &"Fall",
+"speed": 12.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lk3et")

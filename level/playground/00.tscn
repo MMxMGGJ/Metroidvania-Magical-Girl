@@ -30,4 +30,4 @@ target_level_path = "uid://bbj3v3mj5r4j6"
 target_area_name = "LevelTransitionLeft"
 
 [node name="PlayerSpawn" parent="." unique_id=1369205458 instance=ExtResource("6_umthg")]
-position = Vector2(996, 173)
+position = Vector2(3, -418)
