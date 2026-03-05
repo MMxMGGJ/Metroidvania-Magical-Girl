@@ -172,18 +172,18 @@ var jump_intention: bool
 var hold_jump_intention: bool
 
 ## Action 1 intention: true iff character wants to execute Action 1 this frame
-var action1_intention: bool
+var melee_attack_intention: bool
 
 ## Hold action 1 intention: true iff character wants to keep executing Action 1 this frame
 ## (only relevant for actions that use held input)
-var hold_action1_intention: bool
+var hold_melee_attack_intention: bool
 
 ## Action 2 intention: true iff character wants to execute Action 2 this frame
-var action2_intention: bool
+var range_attack_intention: bool
 
 ## Hold action 2 intention: true iff character wants to keep executing Action 2 this frame
 ## (only relevant for actions that use held input)
-var hold_action2_intention: bool
+var hold_range_attack_intention: bool
 
 
 @onready var sfx_manager: SFXManager = InGameManager.sfx_manager
@@ -426,11 +426,11 @@ func _process_player_input():
 	jump_intention = Input.is_action_just_pressed("jump", true)
 	hold_jump_intention = Input.is_action_pressed("jump", true)
 
-	action1_intention = Input.is_action_just_pressed("action1", true)
-	hold_action1_intention = Input.is_action_pressed("action1", true)
+	melee_attack_intention = Input.is_action_just_pressed("melee_attack", true)
+	hold_melee_attack_intention = Input.is_action_pressed("melee_attack", true)
 
-	action2_intention = Input.is_action_just_pressed("action2", true)
-	hold_action2_intention = Input.is_action_pressed("action2", true)
+	range_attack_intention = Input.is_action_just_pressed("range_attack", true)
+	hold_range_attack_intention = Input.is_action_pressed("range_attack", true)
 
 
 ## Clear all intentions (useful for AI which may not set all intention vars)
@@ -440,10 +440,10 @@ func clear_intentions():
 
 	jump_intention = false
 	hold_jump_intention = false
-	action1_intention = false
-	hold_action1_intention = false
-	action2_intention = false
-	hold_action2_intention = false
+	melee_attack_intention = false
+	hold_melee_attack_intention = false
+	range_attack_intention = false
+	hold_range_attack_intention = false
 
 
 ## Change state to default based on current context (grounded or airborne)
