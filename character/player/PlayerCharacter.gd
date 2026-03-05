@@ -60,8 +60,21 @@ extends CharacterBase
 
 @export_group("Parameters")
 
-## Max speed along X (px/s)
-@export var max_free_move_speed_x: float = 200.0
+## A scale to apply to all the parameters in arbitrary world-based units
+## to convert them back to pixel-based units (distance, speed, acceleration)
+## This means that `world_...` parameters are DIVIDED by world_scale_factor
+## To be able to update values in inspector during debugging, we add a setter
+## to every concerned exported value (this script is not @tool so it will only be called at runtime)
+@export var world_scale_factor: float = 100.0:
+	set(value):
+		world_scale_factor = value
+		update_all_scaled_parameters()
+
+## Max speed along X (world unit/s)
+@export var world_max_free_move_speed_x: float = 10.0:
+	set(value):
+		world_max_free_move_speed_x = value
+		update_all_scaled_parameters()
 
 ## For how long (s) is Player Character invincible after being hurt
 ## Note that timer starts immediately when hurt, not when Hurt state ends
@@ -70,29 +83,43 @@ extends CharacterBase
 
 @export_subgroup("Grounded")
 
-## Base grounded acceleration along X (px/s^2)
-## Base value for attribute "grounded_accel_x"
-@export var base_grounded_accel_x: float = 400
+## Grounded acceleration along X (world unit/s^2)
+@export var world_grounded_accel_x: float = 100:
+	set(value):
+		world_grounded_accel_x = value
+		update_all_scaled_parameters()
 
-## Grounded active deceleration along X (px/s^2)
-@export var grounded_active_decel_x: float = 1800
+## Grounded active deceleration along X (world unit/s^2)
+@export var world_grounded_active_decel_x: float = 1000:
+	set(value):
+		world_grounded_active_decel_x = value
+		update_all_scaled_parameters()
 
-## Grounded passive deceleration aka friction along X (px/s^2)
-@export var grounded_passive_decel_x: float = 168.75
+## Grounded passive deceleration aka friction along X (world unit/s^2)
+@export var world_grounded_passive_decel_x: float = 1000:
+	set(value):
+		world_grounded_passive_decel_x = value
+		update_all_scaled_parameters()
 
 
 @export_subgroup("Airborne")
 
 ## Custom gravity
-## Default value is the default physics 2D gravity
-@export var gravity: float = 980.0
+## Default value is the default physics 2D gravity (world unit/s)
+@export var world_gravity: float = 9.80:
+	set(value):
+		world_gravity = value
+		update_all_scaled_parameters()
 
-## Airborne acceleration (passive and active) along X
-@export var airborne_accel_x: float = 337.5
+## Airborne acceleration (passive and active) along X (world unit/s^2)
+@export var world_airborne_accel_x: float = 4.0:
+	set(value):
+		world_airborne_accel_x = value
+		update_all_scaled_parameters()
 
-## Air drag factor to apply every frame
-## Formula is 1-(1/(0.125*256)), no scaling by 60 since still a factor per frame
-@export var air_drag_factor_per_frame: float = 0.96875
+## Air drag factor to apply every frame (1 for no air drag)
+## Remark: no world scaling, effect depends on FPS!
+@export var air_drag_factor_per_frame: float = 1.0
 
 
 # Parameters
@@ -106,6 +133,25 @@ var base_attributes := {}
 
 
 # State
+
+## Max speed along X (px/s)
+var max_free_move_speed_x: float = 200.0
+
+## Grounded acceleration along X (px/s^2)
+var grounded_accel_x: float = 400
+
+## Grounded active deceleration along X (px/s^2)
+var grounded_active_decel_x: float = 1800
+
+## Grounded passive deceleration aka friction along X (px/s^2)
+var grounded_passive_decel_x: float = 168.75
+
+## Custom gravity
+## Default value is the default physics 2D gravity
+var gravity: float = 980.0
+
+## Airborne acceleration (passive and active) along X
+var airborne_accel_x: float = 337.5
 
 ## Flag to track when deferred setup is over so we can start to process safely
 ## (this is only to avoid processing in an invalid state during the first frame)
@@ -193,6 +239,14 @@ func _ready():
 	setup()
 
 
+func update_all_scaled_parameters():
+	max_free_move_speed_x = world_scale_factor * world_max_free_move_speed_x
+	grounded_accel_x = world_scale_factor * world_grounded_accel_x
+	grounded_active_decel_x = world_scale_factor * world_grounded_active_decel_x
+	grounded_passive_decel_x = world_scale_factor * world_grounded_passive_decel_x
+	gravity = world_scale_factor * world_gravity
+	airborne_accel_x = world_scale_factor * world_airborne_accel_x
+
 func initialize():
 	is_setup = false
 
@@ -203,12 +257,15 @@ func initialize():
 	DebugUtils.assert_member_is_set(self, move_box_shape, "move_box_shape")
 	DebugUtils.assert_member_is_set(self, hurt_box, "hurt_box")
 
+	update_all_scaled_parameters()
+
 	horizontal_control_lock_timer = TimerUtils.create_one_shot_physics_timer_under(self)
 	hurt_timer = TimerUtils.create_one_shot_physics_timer_under(self, 1.0, _on_hurt_timer_timeout)
 	invincibility_timer = TimerUtils.create_one_shot_physics_timer_under(self, invincibility_duration_on_hurt, _on_invincibility_timer_timeout)
 
 	# Fill base_attributes from @export vars
-	base_attributes[&"grounded_accel_x"] = base_grounded_accel_x
+	# base_attributes[&"attribute_name"] = base_attribute_name
+	# ...
 
 	# Character States
 	for child in states_parent.get_children():
@@ -589,7 +646,6 @@ func _compute_next_grounded_speed_x(_delta: float) -> float:
 	if move_x_intention != 0.0:
 		if velocity.x == 0.0 or sign(move_x_intention) == sign(velocity.x):
 			# Accel (from 0 or keeping same direction)
-			var grounded_accel_x: float = current_attributes[&"grounded_accel_x"]
 			next_grounded_speed_x = velocity.x + move_x_intention * grounded_accel_x * _delta
 		else:
 			# Active decel
