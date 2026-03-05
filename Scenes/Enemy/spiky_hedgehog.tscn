@@ -84,6 +84,12 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_80c6c"]
+size = Vector2(61, 74)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_80c6c"]
+radius = 25.0
+
 [node name="SpikyHedgehog" type="CharacterBody2D" unique_id=55680957]
 script = ExtResource("1_80c6c")
 
@@ -102,7 +108,21 @@ frame_progress = 0.48512492
 target_position = Vector2(-1000, 0)
 
 [node name="Timer" type="Timer" parent="." unique_id=955166968]
-wait_time = 2.0
+wait_time = 7.0
 one_shot = true
 
+[node name="HedgehogHitbox" type="Area2D" parent="." unique_id=1058898959]
+position = Vector2(-1, 1)
+
+[node name="Hitbox" type="CollisionShape2D" parent="HedgehogHitbox" unique_id=2075812523]
+position = Vector2(-7.5, 27)
+shape = SubResource("RectangleShape2D_80c6c")
+
+[node name="HedgehogDealDamageArea" type="Area2D" parent="." unique_id=2002897300]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HedgehogDealDamageArea" unique_id=1166116828]
+position = Vector2(-3, 32)
+shape = SubResource("CircleShape2D_80c6c")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="HedgehogHitbox" to="." method="_on_hedgehog_hitbox_body_entered"]

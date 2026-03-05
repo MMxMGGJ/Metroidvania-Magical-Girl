@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hi5stblwcdqi"
-path="res://.godot/imported/Pearl ground tiles.png-f4ac70da620989dfcb03e6d7f610c616.ctex"
+uid="uid://pkm70xtuc7cx"
+path="res://.godot/imported/Pearl ground tiles(updated).png-8b6710ca8ca0d8a48c53faebcb41ec6f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Pearl ground tiles.png"
-dest_files=["res://.godot/imported/Pearl ground tiles.png-f4ac70da620989dfcb03e6d7f610c616.ctex"]
+source_file="res://Pearl ground tiles(updated).png"
+dest_files=["res://.godot/imported/Pearl ground tiles(updated).png-8b6710ca8ca0d8a48c53faebcb41ec6f.ctex"]
 
 [params]
 
