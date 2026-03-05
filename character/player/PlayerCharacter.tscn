@@ -206,7 +206,13 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1f2q"]
+size = Vector2(104, 257)
+
 [node name="PlayerCharacter" type="CharacterBody2D" unique_id=874847160 node_paths=PackedStringArray("animation_controller", "states_parent", "animated_sprite", "move_box_shape", "hurt_box")]
+collision_layer = 16
+collision_mask = 0
+platform_floor_layers = 3
 script = ExtResource("1_6ymce")
 animation_controller = NodePath("PlayerCharacterAnimationController")
 states_parent = NodePath("States")
@@ -227,14 +233,23 @@ libraries/ = SubResource("AnimationLibrary_72uy0")
 [node name="States" type="Node" parent="." unique_id=1674336456]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1215367055]
-position = Vector2(2, -141)
+position = Vector2(9, -141)
 sprite_frames = SubResource("SpriteFrames_3c14m")
 
 [node name="MoveBoxShape2D" type="CollisionShape2D" parent="." unique_id=636662548]
+position = Vector2(0, -128.5)
+shape = SubResource("RectangleShape2D_t1f2q")
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=178635551 node_paths=PackedStringArray("character")]
+collision_layer = 16
+collision_mask = 0
 script = ExtResource("3_6siac")
 character = NodePath("..")
 metadata/_custom_type_script = "uid://cqb4pa813n4ta"
+
+[node name="MoveBoxShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1561987534]
+position = Vector2(0, -128.5)
+shape = SubResource("RectangleShape2D_t1f2q")
+debug_color = Color(0.83187985, 0.31458938, 0.6044944, 0.41960785)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=42005804]
