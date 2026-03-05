@@ -1,4 +1,4 @@
-class_name PlayerCharacterStateIdle
+class_name PlayerCharacterStateIdleRun
 extends PlayerCharacterState
 
 
@@ -12,12 +12,15 @@ func initialize():
 
 # implement
 func get_state_name() -> StringName:
-	return &"Idle"
+	return &"IdleRun"
 
 
 # implement
 func get_base_animation() -> StringName:
-	return &"Idle"
+	if abs(character.velocity.x) > 0:
+		return &"Run"
+	else:
+		return &"Idle"
 
 
 # override
@@ -37,10 +40,12 @@ func on_enter():
 
 # implement
 func on_physics_process(delta: float):
-	# Most of the time, character stands without moving, but due to speed momentum of last state
-	# it may actually be moving or even airborne so we need to update its position or even
-	# enter Fall state
-	character.move_grounded_or_airborne_free(delta)
+	if character.move_x_intention < 0:
+		character.change_direction(MathEnums.HorizontalDirection.LEFT)
+	elif character.move_x_intention > 0:
+		character.change_direction(MathEnums.HorizontalDirection.RIGHT)
+
+	character.move_grounded_free(delta)
 
 
 # override

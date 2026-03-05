@@ -52,6 +52,7 @@ extends CharacterBase
 
 @export_group("Children")
 
+@export var directed_parent: Node2D
 @export var animated_sprite: AnimatedSprite2D
 @export var move_box_shape: CollisionShape2D
 @export var hurt_box: HurtBox
@@ -93,12 +94,6 @@ extends CharacterBase
 ## Formula is 1-(1/(0.125*256)), no scaling by 60 since still a factor per frame
 @export var air_drag_factor_per_frame: float = 0.96875
 
-## Multiply absolute speed by this factor to get rebound speed
-## Note that velocity direction is always opposed, so velocity is multiplied
-## by (-rebound_speed_abs_factor)
-## According to SPG, Classic Sonic uses 0.5 on bosses
-@export var rebound_speed_abs_factor: float = 0.5
-
 
 # Parameters
 
@@ -121,6 +116,9 @@ var current_state: PlayerCharacterState
 
 ## State to start on next frame, if any (null to keep same state as before)
 var next_state: PlayerCharacterState
+
+## Current horizontal direction
+var direction: MathEnums.HorizontalDirection
 
 ## Timer to track horizontal control lock, created on start
 ## It is only used for control lock when not hurt, since we check for Hurt state
@@ -200,6 +198,7 @@ func initialize():
 
 	DebugUtils.assert_member_is_set(self, animation_controller, "animation_controller")
 	DebugUtils.assert_member_is_set(self, states_parent, "states_parent")
+	DebugUtils.assert_member_is_set(self, directed_parent, "directed_parent")
 	DebugUtils.assert_member_is_set(self, animated_sprite, "animated_sprite")
 	DebugUtils.assert_member_is_set(self, move_box_shape, "move_box_shape")
 	DebugUtils.assert_member_is_set(self, hurt_box, "hurt_box")
@@ -228,7 +227,21 @@ func setup():
 	# State enter logic is applied to the initial state
 	current_state = null
 	next_state = null
-	set_next_state_by_name(&"Idle")
+	set_next_state_by_name(&"IdleRun")
+
+	# Character sprites must all face right, so use it as initial direction
+	# Make sure to call _change_direction to also update sprite orientation
+	change_direction(MathEnums.HorizontalDirection.RIGHT)
+
+	# Timers and Tweens
+
+	horizontal_control_lock_timer.stop()
+	hurt_timer.stop()
+	invincibility_timer.stop()
+
+	if invincibility_blink_tween:
+		invincibility_blink_tween.stop()
+		invincibility_blink_tween = null
 
 	# Tags and attributes
 
@@ -241,6 +254,8 @@ func setup():
 	current_attributes.merge(base_attributes, true)
 
 	current_fx_trail = null
+
+	clear_intentions()
 
 	on_setup()
 
@@ -433,7 +448,7 @@ func _process_player_input():
 	hold_range_attack_intention = Input.is_action_pressed("range_attack", true)
 
 
-## Clear all intentions (useful for AI which may not set all intention vars)
+## Clear all intentions (useful for Simulation mode which may not set all intention vars)
 func clear_intentions():
 	move_x_intention = 0.0
 	move_y_intention = 0.0
@@ -451,7 +466,7 @@ func clear_intentions():
 ## to fall back to a meaningful state
 func revert_to_default_contextual_state():
 	if is_on_floor():
-		try_set_next_state_by_name_without_restart(&"Idle")
+		try_set_next_state_by_name_without_restart(&"IdleRun")
 	else:
 		try_set_next_state_by_name_without_restart(&"Fall")
 
@@ -552,6 +567,13 @@ func update_current_attribute(attribute_name: StringName):
 	current_attributes[attribute_name] = final_multiplier * base_attributes[attribute_name]
 
 
+## Change character direction, updating directed parent and all its children
+func change_direction(horizontal_direction: MathEnums.HorizontalDirection):
+	direction = horizontal_direction
+
+	NodeUtils.set_flip_x(directed_parent, horizontal_direction == MathEnums.HorizontalDirection.LEFT)
+
+
 ## Return true if character can jump
 func _can_jump() -> bool:
 	# Since character state can override move process, each of them can disable jump
@@ -585,7 +607,7 @@ func update_velocity_grounded_free(delta: float):
 
 
 ## Move character when grounded with free control
-func _move_grounded_free(delta: float):
+func move_grounded_free(delta: float):
 	update_velocity_grounded_free(delta)
 	check_jump()
 	move_and_slide()
@@ -600,7 +622,6 @@ func check_jump():
 
 
 func start_jump():
-	# Immediate?
 	set_next_state_by_name(&"Jump")
 
 
@@ -639,13 +660,6 @@ func apply_gravity_if_grounded(delta: float):
 func _move_airborne_free(delta: float):
 	update_velocity_airborne_free(delta)
 	move_and_slide()
-
-
-func move_grounded_or_airborne_free(delta: float):
-	if is_on_floor():
-		_move_grounded_free(delta)
-	else:
-		_move_airborne_free(delta)
 
 
 func _can_be_hurt():
