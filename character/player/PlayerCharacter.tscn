@@ -20,6 +20,10 @@ states_parent = NodePath("States")
 animated_sprite = NodePath("AnimatedSprite2D")
 move_box_shape = NodePath("MoveBoxShape2D")
 hurt_box = NodePath("HurtBox")
+max_free_move_speed_x = 1000.0
+base_grounded_accel_x = 10000.0
+grounded_active_decel_x = 10000.0
+grounded_passive_decel_x = 10000.0
 metadata/_custom_type_script = "uid://d2dg6lgxnwj7x"
 
 [node name="PlayerCharacterAnimationController" type="Node" parent="." unique_id=781347943 node_paths=PackedStringArray("character", "animation_player")]

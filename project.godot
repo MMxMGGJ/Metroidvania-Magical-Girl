@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Metroidvania Magical Girl"
-run/main_scene="res://menu/scenes/opening/opening.tscn"
+run/main_scene="uid://jdx14ftf7k1s"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 

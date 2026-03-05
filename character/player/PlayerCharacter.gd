@@ -59,7 +59,7 @@ extends CharacterBase
 
 @export_group("Parameters")
 
-## Max speed along X
+## Max speed along X (px/s)
 @export var max_free_move_speed_x: float = 200.0
 
 ## For how long (s) is Player Character invincible after being hurt
@@ -69,14 +69,14 @@ extends CharacterBase
 
 @export_subgroup("Grounded")
 
-## Base grounded acceleration (px/s) along X
+## Base grounded acceleration along X (px/s^2)
 ## Base value for attribute "grounded_accel_x"
 @export var base_grounded_accel_x: float = 400
 
-## Grounded active deceleration along X
+## Grounded active deceleration along X (px/s^2)
 @export var grounded_active_decel_x: float = 1800
 
-## Grounded passive deceleration aka friction along X
+## Grounded passive deceleration aka friction along X (px/s^2)
 @export var grounded_passive_decel_x: float = 168.75
 
 
