@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://klpcfpujfjff"]
 
-[ext_resource type="Script" uid="uid://cabhipklha2j7" path="res://character/player/PlayerCharacter.gd" id="1_6ymce"]
+[ext_resource type="Script" uid="uid://d2dg6lgxnwj7x" path="res://character/player/PlayerCharacter.gd" id="1_lk3et"]
 [ext_resource type="Script" uid="uid://t0j0gtj5gvj3" path="res://character/player/PlayerCharacterAnimationController.gd" id="2_xudxr"]
 [ext_resource type="Script" uid="uid://cqb4pa813n4ta" path="res://character/HurtBox.gd" id="3_6siac"]
 [ext_resource type="AnimationLibrary" uid="uid://dmt344t4racll" path="res://character/player/animations/animation_library_player_character.res" id="3_lk3et"]
@@ -9,17 +9,17 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t1f2q"]
 size = Vector2(104, 257)
 
-[node name="PlayerCharacter" type="CharacterBody2D" unique_id=874847160 node_paths=PackedStringArray("animation_controller", "states_parent", "animated_sprite", "move_box_shape", "hurt_box")]
+[node name="PlayerCharacter" type="CharacterBody2D" unique_id=1888169384 node_paths=PackedStringArray("animation_controller", "states_parent", "animated_sprite", "move_box_shape", "hurt_box")]
 collision_layer = 16
 collision_mask = 0
 platform_floor_layers = 3
-script = ExtResource("1_6ymce")
+script = ExtResource("1_lk3et")
 animation_controller = NodePath("PlayerCharacterAnimationController")
 states_parent = NodePath("States")
 animated_sprite = NodePath("AnimatedSprite2D")
 move_box_shape = NodePath("MoveBoxShape2D")
 hurt_box = NodePath("HurtBox")
-metadata/_custom_type_script = "uid://cabhipklha2j7"
+metadata/_custom_type_script = "uid://d2dg6lgxnwj7x"
 
 [node name="PlayerCharacterAnimationController" type="Node" parent="." unique_id=781347943 node_paths=PackedStringArray("character", "animation_player")]
 script = ExtResource("2_xudxr")

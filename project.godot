@@ -30,6 +30,10 @@ ProjectUISoundController="*uid://cc37235kj4384"
 MusicManager="*uid://mnlastt41gpl"
 InGameManager="*uid://c8jjy0cj0ybnx"
 
+[debug_draw_3d]
+
+settings/addon_root_folder="res://addons/debug_draw_3d"
+
 [display]
 
 window/size/viewport_width=2560

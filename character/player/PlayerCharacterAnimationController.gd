@@ -1,10 +1,10 @@
 class_name PlayerCharacterAnimationController
 extends AnimationControllerBase
-## Base class for animation controller for player character (PlayerCharacterBase children)
+## Base class for animation controller for player character (PlayerCharacter children)
 
 
 ## Owner
-@export var character: PlayerCharacterBase
+@export var character: PlayerCharacter
 
 
 # override

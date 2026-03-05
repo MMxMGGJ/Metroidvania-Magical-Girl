@@ -57,7 +57,7 @@ func invincible_against_damage_type(damage_type: Enums.DamageType):
 	return invincible or enabled_immunity and immunity_type == damage_type
 
 
-func try_receive_damage(damage: int, damaging_player_character: PlayerCharacterBase, damage_type: Enums.DamageType):
+func try_receive_damage(damage: int, damaging_player_character: PlayerCharacter, damage_type: Enums.DamageType):
 	if not invincible_against_damage_type(damage_type):
 		var success := boss.health.try_receive_damage(damage, damage_type)
 		if success:

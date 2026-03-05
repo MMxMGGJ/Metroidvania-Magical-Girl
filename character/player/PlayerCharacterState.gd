@@ -12,7 +12,7 @@ signal exited
 
 ## Owning player character
 ## Set on player character initialization
-var character: PlayerCharacterBase
+var character: PlayerCharacter
 
 
 func enter():
