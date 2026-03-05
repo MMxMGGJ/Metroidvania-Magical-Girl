@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://t0j0gtj5gvj3" path="res://character/player/PlayerCharacterAnimationController.gd" id="2_xudxr"]
 [ext_resource type="Script" uid="uid://cqb4pa813n4ta" path="res://character/HurtBox.gd" id="3_6siac"]
 [ext_resource type="AnimationLibrary" uid="uid://dmt344t4racll" path="res://character/player/animations/animation_library_player_character.res" id="3_lk3et"]
+[ext_resource type="Script" uid="uid://dgtjuh5dhnow" path="res://character/player/states/PlayerCharacterStateIdle.gd" id="4_4yu7e"]
 [ext_resource type="SpriteFrames" uid="uid://pbdcqaa8r6y1" path="res://character/player/animations/sprite_frames_player_character.tres" id="4_72uy0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t1f2q"]
@@ -11,7 +12,7 @@ size = Vector2(104, 257)
 
 [node name="PlayerCharacter" type="CharacterBody2D" unique_id=1888169384 node_paths=PackedStringArray("animation_controller", "states_parent", "animated_sprite", "move_box_shape", "hurt_box")]
 collision_layer = 16
-collision_mask = 0
+collision_mask = 3
 platform_floor_layers = 3
 script = ExtResource("1_lk3et")
 animation_controller = NodePath("PlayerCharacterAnimationController")
@@ -31,6 +32,10 @@ metadata/_custom_type_script = "uid://t0j0gtj5gvj3"
 libraries/ = ExtResource("3_lk3et")
 
 [node name="States" type="Node" parent="." unique_id=1674336456]
+
+[node name="PlayerCharacterStateIdle" type="Node" parent="States" unique_id=1872110354]
+script = ExtResource("4_4yu7e")
+metadata/_custom_type_script = "uid://dgtjuh5dhnow"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1215367055]
 position = Vector2(9, -141)
