@@ -11,7 +11,10 @@
 [ext_resource type="AudioStream" uid="uid://5uyybxx036c" path="res://audio/sfx/SFX_Jump.ogg" id="7_0xanw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t1f2q"]
-size = Vector2(104, 257)
+size = Vector2(104, 258)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xanw"]
+size = Vector2(104, 258)
 
 [node name="PlayerCharacter" type="CharacterBody2D" unique_id=1888169384 node_paths=PackedStringArray("animation_controller", "states_parent", "directed_parent", "animated_sprite", "move_box_shape", "hurt_box")]
 collision_layer = 16
@@ -57,7 +60,7 @@ position = Vector2(9, -141)
 sprite_frames = ExtResource("4_72uy0")
 
 [node name="MoveBoxShape2D" type="CollisionShape2D" parent="." unique_id=636662548]
-position = Vector2(0, -128.5)
+position = Vector2(0, -129)
 shape = SubResource("RectangleShape2D_t1f2q")
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=178635551 node_paths=PackedStringArray("character")]
@@ -68,8 +71,8 @@ character = NodePath("..")
 metadata/_custom_type_script = "uid://cqb4pa813n4ta"
 
 [node name="HurtBoxShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1561987534]
-position = Vector2(0, -128.5)
-shape = SubResource("RectangleShape2D_t1f2q")
+position = Vector2(0, -129)
+shape = SubResource("RectangleShape2D_0xanw")
 debug_color = Color(0.83187985, 0.31458938, 0.6044944, 0.41960785)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=42005804]
