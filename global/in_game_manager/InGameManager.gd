@@ -41,6 +41,8 @@ func spawn_player_character_and_start_ingame(spawn_position: Vector2):
 		# Spawn player character at passed position
 		player_character = NodeUtils.instantiate_under_at(player_character_prefab, get_tree().root, spawn_position)
 
+		# TODO: play spawn animation
+
 		# In-game start routine
 		SceneManager.load_scene_finished.emit()
 

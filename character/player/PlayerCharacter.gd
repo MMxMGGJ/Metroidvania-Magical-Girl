@@ -100,13 +100,6 @@ extends CharacterBase
 @export var rebound_speed_abs_factor: float = 0.5
 
 
-@export_subgroup("Damage")
-
-## Base damage dealt to boss when hitting its weak point with a move (in any state)
-## Base value for attribute "damage_on_collision" (will be rounded to int after calculation)
-@export var base_damage_on_collision: float = 1
-
-
 # Parameters
 
 ## Dictionary of state name: StringName => state: PlayerCharacterState
@@ -144,9 +137,6 @@ var invincibility_timer: Timer
 
 ## Tween handling invincibility blink
 var invincibility_blink_tween: Tween
-
-## True if currently the team leader, and should be directly controlled by the player
-var is_leader: bool
 
 ## List of tags currently active on the character
 ## Tags are added by character states on start, and removed on finally
@@ -202,8 +192,7 @@ var hold_action2_intention: bool
 
 func _ready():
 	initialize()
-
-	# do not call setup, as managed by Team
+	setup()
 
 
 func initialize():
@@ -221,14 +210,8 @@ func initialize():
 
 	# Fill base_attributes from @export vars
 	base_attributes[&"grounded_accel_x"] = base_grounded_accel_x
-	base_attributes[&"damage_on_collision"] = base_damage_on_collision
-
-
-func deferred_setup():
-	is_leader = false
 
 	# Character States
-
 	for child in states_parent.get_children():
 		var state := child as PlayerCharacterState
 		if not state:
@@ -239,11 +222,13 @@ func deferred_setup():
 		state.character = self
 		states_dict[state.get_state_name()] = state
 
+
+func setup():
 	# Instead of setting the current state, set the next state to make sure that
 	# State enter logic is applied to the initial state
 	current_state = null
 	next_state = null
-	set_next_state_by_name(&"Run")
+	set_next_state_by_name(&"Idle")
 
 	# Tags and attributes
 
@@ -290,9 +275,7 @@ func _physics_process(delta: float):
 	# AI: FSM pattern
 	_check_next_state()
 
-	if is_leader:
-		_process_player_input()
-	# else, let Team set AI intentions (in physics process at priority -1)
+	_process_player_input()
 
 	# Custom physics process, including starting character action on intention
 	# TIMING NOTE: implementation calls change_state_by_name for maximum
@@ -584,7 +567,6 @@ func _compute_next_grounded_speed_x(_delta: float) -> float:
 	if move_x_intention != 0.0:
 		if velocity.x == 0.0 or sign(move_x_intention) == sign(velocity.x):
 			# Accel (from 0 or keeping same direction)
-			# once we support Team action attribute modifier, we can use this instead:
 			var grounded_accel_x: float = current_attributes[&"grounded_accel_x"]
 			next_grounded_speed_x = velocity.x + move_x_intention * grounded_accel_x * _delta
 		else:
@@ -657,11 +639,6 @@ func apply_gravity_if_grounded(delta: float):
 func _move_airborne_free(delta: float):
 	update_velocity_airborne_free(delta)
 	move_and_slide()
-
-	if is_on_floor() and not is_hurt():
-		# Landed and not still hurt, switch to Run state
-		pass
-		#set_next_state_by_name(&"Run")
 
 
 func move_grounded_or_airborne_free(delta: float):
