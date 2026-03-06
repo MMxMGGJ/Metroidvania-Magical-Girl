@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://da0u2qpae01h4"]
+
+[ext_resource type="Script" uid="uid://dlm8b6iv7kr2j" path="res://addons/hyper-godot-commons/audio/SFXManager.gd" id="1_6iu0a"]
+[ext_resource type="PackedScene" uid="uid://e84vusbrjlws" path="res://global/audio/OneShotAudioStreamPlayer.tscn" id="2_cqpry"]
+[ext_resource type="PackedScene" uid="uid://7v4kpvrxlq81" path="res://global/audio/LoopingAudioStreamPlayer.tscn" id="3_85mjd"]
+
+[node name="SFXManager" type="Node" unique_id=838317786 node_paths=PackedStringArray("sfx_parent") groups=["sfx_manager"]]
+script = ExtResource("1_6iu0a")
+one_shot_audio_stream_player_prefab = ExtResource("2_cqpry")
+looping_audio_stream_player_prefab = ExtResource("3_85mjd")
+sfx_parent = NodePath("SFXParent")
+
+[node name="SFXParent" type="Node2D" parent="." unique_id=1917017931]

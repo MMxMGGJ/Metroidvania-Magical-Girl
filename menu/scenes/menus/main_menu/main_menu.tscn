@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://dxfju51h47uyb"]
 
-[ext_resource type="PackedScene" path="res://addons/maaacks_menus_template/base/nodes/menus/main_menu/main_menu.tscn" id="1_pgt48"]
-[ext_resource type="Script" path="res://menu/scenes/menus/main_menu/main_menu.gd" id="2_8xkdi"]
-[ext_resource type="PackedScene" path="res://menu/scenes/windows/main_menu_options_window.tscn" id="3_kvlyw"]
-[ext_resource type="PackedScene" path="res://menu/scenes/windows/main_menu_credits_window.tscn" id="4_q8yfv"]
+[ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_menus_template/base/nodes/menus/main_menu/main_menu.tscn" id="1_pgt48"]
+[ext_resource type="Script" uid="uid://dgchyyvycnha8" path="res://menu/scenes/menus/main_menu/main_menu.gd" id="2_8xkdi"]
+[ext_resource type="Theme" uid="uid://bxdnhajhecgst" path="res://menu/resources/themes/lore_custom.tres" id="2_kvlyw"]
+[ext_resource type="PackedScene" uid="uid://dks54cf756w4s" path="res://menu/scenes/windows/main_menu_options_window.tscn" id="3_kvlyw"]
+[ext_resource type="PackedScene" uid="uid://uvkjrcxulydo" path="res://menu/scenes/windows/main_menu_credits_window.tscn" id="4_q8yfv"]
 
 [node name="MainMenu" unique_id=869232425 instance=ExtResource("1_pgt48")]
+theme = ExtResource("2_kvlyw")
 script = ExtResource("2_8xkdi")
 options_packed_scene = ExtResource("3_kvlyw")
 credits_packed_scene = ExtResource("4_q8yfv")

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bpjghqb0qipay"]
+
+[ext_resource type="Script" uid="uid://cao8rukt7jhm8" path="res://level/player_spawn/player_spawn.gd" id="1_h1cw5"]
+[ext_resource type="PackedScene" uid="uid://klpcfpujfjff" path="res://character/player/PlayerCharacter.tscn" id="2_wb7r5"]
+[ext_resource type="Texture2D" uid="uid://djnr5rr8x2kfl" path="res://character/player/sprites/proto spritesheet_player_character_Idle 28% (mockup scale).webp" id="3_wb7r5"]
+
+[node name="PlayerSpawn" type="Node2D" unique_id=1369205458]
+z_index = 100
+script = ExtResource("1_h1cw5")
+player_prefab = ExtResource("2_wb7r5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1477711334]
+modulate = Color(0.69670385, 1.3056302, 0.57981074, 1)
+position = Vector2(9, -141)
+texture = ExtResource("3_wb7r5")
+hframes = 4
+vframes = 4

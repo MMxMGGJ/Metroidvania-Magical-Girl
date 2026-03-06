@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://klpcfpujfjff"]
+
+[ext_resource type="Script" uid="uid://d2dg6lgxnwj7x" path="res://character/player/PlayerCharacter.gd" id="1_lk3et"]
+[ext_resource type="Script" uid="uid://t0j0gtj5gvj3" path="res://character/player/PlayerCharacterAnimationController.gd" id="2_xudxr"]
+[ext_resource type="Script" uid="uid://cqb4pa813n4ta" path="res://character/HurtBox.gd" id="3_6siac"]
+[ext_resource type="AnimationLibrary" uid="uid://dmt344t4racll" path="res://character/player/animations/animation_library_player_character.res" id="3_lk3et"]
+[ext_resource type="Script" uid="uid://dgtjuh5dhnow" path="res://character/player/states/PlayerCharacterStateIdleRun.gd" id="4_4yu7e"]
+[ext_resource type="SpriteFrames" uid="uid://pbdcqaa8r6y1" path="res://character/player/animations/sprite_frames_player_character.tres" id="4_72uy0"]
+[ext_resource type="Script" uid="uid://dxg2poxsk8tgt" path="res://character/player/states/PlayerCharacterStateFall.gd" id="5_4yu7e"]
+[ext_resource type="Script" uid="uid://byr408dhtl1wq" path="res://character/player/states/PlayerCharacterStateJump.gd" id="6_g7i8e"]
+[ext_resource type="AudioStream" uid="uid://5uyybxx036c" path="res://audio/sfx/SFX_Jump.ogg" id="7_0xanw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1f2q"]
+size = Vector2(104, 258)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xanw"]
+size = Vector2(104, 258)
+
+[node name="PlayerCharacter" type="CharacterBody2D" unique_id=1888169384 node_paths=PackedStringArray("animation_controller", "states_parent", "directed_parent", "animated_sprite", "move_box_shape", "hurt_box")]
+collision_layer = 16
+collision_mask = 3
+platform_floor_layers = 3
+script = ExtResource("1_lk3et")
+animation_controller = NodePath("PlayerCharacterAnimationController")
+states_parent = NodePath("States")
+directed_parent = NodePath("DirectedParent")
+animated_sprite = NodePath("DirectedParent/AnimatedSprite2D")
+move_box_shape = NodePath("MoveBoxShape2D")
+hurt_box = NodePath("HurtBox")
+metadata/_custom_type_script = "uid://d2dg6lgxnwj7x"
+
+[node name="PlayerCharacterAnimationController" type="Node" parent="." unique_id=781347943 node_paths=PackedStringArray("character", "animation_player")]
+script = ExtResource("2_xudxr")
+character = NodePath("..")
+animation_player = NodePath("AnimationPlayer")
+metadata/_custom_type_script = "uid://t0j0gtj5gvj3"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerCharacterAnimationController" unique_id=1168309820]
+libraries/ = ExtResource("3_lk3et")
+
+[node name="States" type="Node" parent="." unique_id=1674336456]
+
+[node name="PlayerCharacterStateIdle" type="Node" parent="States" unique_id=1872110354]
+script = ExtResource("4_4yu7e")
+metadata/_custom_type_script = "uid://dgtjuh5dhnow"
+
+[node name="PlayerCharacterStateFall" type="Node" parent="States" unique_id=288961433]
+script = ExtResource("5_4yu7e")
+metadata/_custom_type_script = "uid://dxg2poxsk8tgt"
+
+[node name="PlayerCharacterStateJump" type="Node" parent="States" unique_id=813086145]
+script = ExtResource("6_g7i8e")
+sfx = ExtResource("7_0xanw")
+metadata/_custom_type_script = "uid://byr408dhtl1wq"
+
+[node name="DirectedParent" type="Node2D" parent="." unique_id=849408829]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="DirectedParent" unique_id=1215367055]
+position = Vector2(9, -141)
+sprite_frames = ExtResource("4_72uy0")
+
+[node name="MoveBoxShape2D" type="CollisionShape2D" parent="." unique_id=636662548]
+position = Vector2(0, -129)
+shape = SubResource("RectangleShape2D_t1f2q")
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=178635551 node_paths=PackedStringArray("character")]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("3_6siac")
+character = NodePath("..")
+metadata/_custom_type_script = "uid://cqb4pa813n4ta"
+
+[node name="HurtBoxShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1561987534]
+position = Vector2(0, -129)
+shape = SubResource("RectangleShape2D_0xanw")
+debug_color = Color(0.83187985, 0.31458938, 0.6044944, 0.41960785)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=42005804]
