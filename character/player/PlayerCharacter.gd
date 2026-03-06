@@ -127,7 +127,7 @@ extends CharacterBase
 		update_all_scaled_parameters()
 
 ## Airborne acceleration (passive and active) along X (world unit/s^2)
-@export var world_airborne_accel_x: float = 150.0:
+@export var world_airborne_accel_x: float = 100.0:
 	set(value):
 		world_airborne_accel_x = value
 		update_all_scaled_parameters()
