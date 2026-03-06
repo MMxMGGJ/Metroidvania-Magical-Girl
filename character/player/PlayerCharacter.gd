@@ -379,6 +379,12 @@ func _physics_process(delta: float):
 		current_state.on_physics_process(delta)
 
 
+# virtual
+func on_physics_process(_delta: float):
+	if &"CanJump" in active_tags:
+		check_jump()
+
+
 ## Return state with passed name
 func get_state_by_name(state_name: StringName) -> PlayerCharacterState:
 	var state = states_dict.get(state_name) as PlayerCharacterState
@@ -489,12 +495,6 @@ func _change_state(new_state: PlayerCharacterState):
 		animation_controller.play_animation(action_base_animation)
 
 	return current_state
-
-
-# virtual
-func on_physics_process(_delta: float):
-	if &"CanJump" in active_tags:
-		check_jump()
 
 
 ## Return true iff taking player horizontal input into account for move intention X
