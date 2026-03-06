@@ -382,9 +382,13 @@ func _physics_process(delta: float):
 # virtual
 func on_physics_process(_delta: float):
 	if &"CanJump" in active_tags:
-		check_jump()
+		var has_jumped := check_jump()
+		if has_jumped:
+			return
 	if &"CanMeleeAttack" in active_tags:
-		check_melee_attack()
+		var has_melee_attacked := check_melee_attack()
+		if has_melee_attacked:
+			return
 
 
 ## Return state with passed name
@@ -691,23 +695,22 @@ func move_grounded_free(delta: float):
 	move_and_slide()
 
 
-func check_jump():
+func check_jump() -> bool:
 	if jump_intention:
 		# Consume intention and jump
 		jump_intention = false
-		start_jump()
+		change_state_by_name(&"Jump")
+		return true
+	return false
 
 
-func start_jump():
-	change_state_by_name(&"Jump")
-
-
-func check_melee_attack():
+func check_melee_attack() -> bool:
 	if melee_attack_intention:
 		# Consume intention and attack
 		melee_attack_intention = false
 		change_state_by_name(&"MeleeAttack")
-
+		return true
+	return false
 
 ## Process horizontal move input and return next airborne speed along X
 func _compute_next_airborne_speed_x(_delta: float) -> float:

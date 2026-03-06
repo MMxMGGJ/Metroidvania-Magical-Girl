@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MeleeAttackData" format=3 uid="uid://bxvm7nmdajcfl"]
+
+[ext_resource type="Script" uid="uid://bxb53oc35muro" path="res://character/player/MeleeAttackData.gd" id="1_u3cqq"]
+[ext_resource type="AudioStream" uid="uid://baqgoo5btby2d" path="res://audio/sfx/SFX_Melee_Attack2.ogg" id="2_k12n2"]
+
+[resource]
+script = ExtResource("1_u3cqq")
+sfx = ExtResource("2_k12n2")
+damage = 2
+duration_before_can_cancel = 0.5
+action_duration = 0.25
+metadata/_custom_type_script = "uid://bxb53oc35muro"

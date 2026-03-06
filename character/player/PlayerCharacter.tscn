@@ -10,9 +10,9 @@
 [ext_resource type="Script" uid="uid://ct2tua0w730pe" path="res://character/player/states/PlayerCharacterStateMeleeAttack.gd" id="6_dhyjg"]
 [ext_resource type="Script" uid="uid://byr408dhtl1wq" path="res://character/player/states/PlayerCharacterStateJump.gd" id="6_g7i8e"]
 [ext_resource type="AudioStream" uid="uid://5uyybxx036c" path="res://audio/sfx/SFX_Jump.ogg" id="7_0xanw"]
-[ext_resource type="AudioStream" uid="uid://bivl6vkg6jh7s" path="res://audio/sfx/SFX_Melee_Attack1.ogg" id="7_rjsrs"]
-[ext_resource type="AudioStream" uid="uid://baqgoo5btby2d" path="res://audio/sfx/SFX_Melee_Attack2.ogg" id="8_4xg3d"]
-[ext_resource type="AudioStream" uid="uid://bdepc30sc4cl0" path="res://audio/sfx/SFX_Melee_Attack3.ogg" id="9_7nmff"]
+[ext_resource type="Script" uid="uid://bxb53oc35muro" path="res://character/player/MeleeAttackData.gd" id="7_7nmff"]
+[ext_resource type="Resource" uid="uid://c8bvrtq8mef5u" path="res://character/player/data/melee_attack_data_1.tres" id="8_4xg3d"]
+[ext_resource type="Resource" uid="uid://bxvm7nmdajcfl" path="res://character/player/data/melee_attack_data_2.tres" id="9_7nmff"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t1f2q"]
 size = Vector2(104, 258)
@@ -56,8 +56,8 @@ metadata/_custom_type_script = "uid://byr408dhtl1wq"
 
 [node name="PlayerCharacterStateMeleeAttack" type="Node" parent="States" unique_id=1527437553 node_paths=PackedStringArray("melee_hit_area_2d")]
 script = ExtResource("6_dhyjg")
-sfx_list = Array[AudioStream]([ExtResource("7_rjsrs"), ExtResource("8_4xg3d"), ExtResource("9_7nmff")])
 melee_hit_area_2d = NodePath("../../MeleeHitBox")
+melee_attack_data_list = Array[ExtResource("7_7nmff")]([ExtResource("8_4xg3d"), ExtResource("9_7nmff")])
 metadata/_custom_type_script = "uid://ct2tua0w730pe"
 
 [node name="PlayerCharacterAnimationController" type="Node" parent="." unique_id=781347943 node_paths=PackedStringArray("character", "animation_player")]

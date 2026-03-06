@@ -14,12 +14,6 @@ enum AttackDirection {
 }
 
 
-@export_group("SFX")
-
-## List of SFX to play on action start, in order of combo variants
-@export var sfx_list: Array[AudioStream]
-
-
 @export_group("Children")
 
 ## Hit box for the melee attack
@@ -31,20 +25,10 @@ enum AttackDirection {
 @export_group("Parameters")
 
 ## Maximum number of melee attacks to chain
-@export var max_melee_attack_count: int = 3
+@export var max_melee_attack_count: int = 2
 
-## Damage dealt by a normal attack
-@export var normal_attack_damage: int = 1
-
-## Duration (s) before player can cancel action with the same repeated
-## or another one
-@export var duration_before_can_cancel: float = 4/12.0
-
-## Duration (s) of action (default is full animation duration)
-@export var action_duration: float = 5/12.0
-
-## Speed forward of action (0.0 for no root motion)
-@export var character_move_speed: float = 0.0
+## List of melee attack data for each pattern, in order of combo
+@export var melee_attack_data_list: Array[MeleeAttackData]
 
 
 ## Timer to can cancel time
@@ -74,16 +58,19 @@ func _ready():
 
 
 func initialize():
-	DebugUtils.assert_array_member_is_not_empty(self, sfx_list, "sfx_list")
-	assert(sfx_list.size() == max_melee_attack_count,
-		"sfx_list.size() is %d, but it should match max_melee_attack_count (%d)" %
-			[sfx_list.size(), max_melee_attack_count])
+	DebugUtils.assert_array_member_is_not_empty(self, melee_attack_data_list, "melee_attack_data_list")
+	assert(melee_attack_data_list.size() == max_melee_attack_count,
+		"melee_attack_data_list.size() is %d, but it should match max_melee_attack_count (%d)" %
+			[melee_attack_data_list.size(), max_melee_attack_count])
+
 	DebugUtils.assert_member_is_set(self, melee_hit_area_2d, "melee_hit_area_2d")
 
+	# Note: we pass a dummy duration, but we'll pass the actual durations
+	# for each attack pattern on timer start
 	can_cancel_timer = TimerUtils.create_one_shot_physics_timer_under(
-		self, duration_before_can_cancel, _on_can_cancel_timer_timeout)
+		self, 1.0, _on_can_cancel_timer_timeout)
 	action_timer = TimerUtils.create_one_shot_physics_timer_under(
-		self, action_duration, _on_action_timer_timeout)
+		self, 1.0, _on_action_timer_timeout)
 
 	melee_hit_area_2d.body_entered.connect(_on_melee_hit_area_2d_body_entered)
 
@@ -117,23 +104,26 @@ func on_enter():
 
 
 func start_next_attack(direction: AttackDirection):
-	if _attack_pattern >= max_melee_attack_count - 1:
-		push_error("_attack_pattern is %d, should be less than max_melee_attack_count - 1 (%d)"
-			% [_attack_pattern, max_melee_attack_count - 1])
+	if _attack_pattern >= max_melee_attack_count:
+		push_error("_attack_pattern is %d, should be less than max_melee_attack_count (%d)"
+			% [_attack_pattern, max_melee_attack_count])
 		return
 
 	attack_direction = direction
 	_attack_pattern = _attack_pattern + 1
+	character.try_remove_active_tag(&"CanJump")
 
 	# Clear set of damaged health components, in case we are chaining an attack
 	# over a previous one, so we can hit the same health components again
 	_just_damaged_health_set.clear()
 
+	var melee_attack_data := melee_attack_data_list[_attack_pattern - 1]
+
 	var dir_sign := MathUtils.horizontal_direction_to_sign(character.direction)
-	character.velocity.x = dir_sign * character_move_speed
-	can_cancel_timer.start()
-	action_timer.start()
-	InGameManager.sfx_manager.spawn_sfx(sfx_list[_attack_pattern - 1])
+	character.velocity.x = dir_sign * melee_attack_data.character_move_speed
+	can_cancel_timer.start(melee_attack_data.duration_before_can_cancel)
+	action_timer.start(melee_attack_data.action_duration)
+	InGameManager.sfx_manager.spawn_sfx(melee_attack_data.sfx)
 
 
 # implement
@@ -143,7 +133,7 @@ func on_physics_process(_delta: float):
 	# to call the `start_next_attack` method. Plus, there is no 1 frame delay
 	# in checking this here since we don't change state, just start next animation
 	# so it's easier just check next melee attack intention here
-	if character.melee_attack_intention:
+	if character.melee_attack_intention and can_cancel_timer.is_stopped():
 		# Consume intention and attack
 		character.melee_attack_intention = false
 		start_next_attack(AttackDirection.Forward)
@@ -200,4 +190,9 @@ func _try_damage_health_once(health: Health):
 ## Return damage to deal with current attack type
 ## UB unless character is attacking
 func _get_damage_from_current_attack_type() -> int:
-	return normal_attack_damage
+	# RISK OF 1 FRAME LAG and checking new attack pattern (_attack_pattern-1) for damage!
+	# TODO for testing: create a melee hit that is instant (frame 1)
+	# with a very different damage value and check if it's not used by the old attack hit
+	# a bit hard to trigger as I must press attack input on the frame of hit...
+	# consider automation via puppet simulation
+	return melee_attack_data_list[_attack_pattern].damage

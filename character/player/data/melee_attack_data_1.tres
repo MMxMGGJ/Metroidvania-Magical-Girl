@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MeleeAttackData" format=3 uid="uid://c8bvrtq8mef5u"]
+
+[ext_resource type="Script" uid="uid://bxb53oc35muro" path="res://character/player/MeleeAttackData.gd" id="1_dt8ie"]
+[ext_resource type="AudioStream" uid="uid://bivl6vkg6jh7s" path="res://audio/sfx/SFX_Melee_Attack1.ogg" id="2_0shfp"]
+
+[resource]
+script = ExtResource("1_dt8ie")
+sfx = ExtResource("2_0shfp")
+metadata/_custom_type_script = "uid://bxb53oc35muro"
