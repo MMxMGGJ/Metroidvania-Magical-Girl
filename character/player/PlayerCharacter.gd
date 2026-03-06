@@ -660,14 +660,6 @@ func change_direction(horizontal_direction: MathEnums.HorizontalDirection):
 	NodeUtils.set_flip_x(directed_parent, horizontal_direction == MathEnums.HorizontalDirection.LEFT)
 
 
-## Return true if character can jump
-func _can_jump() -> bool:
-	# Since character state can override move process, each of them can disable jump
-	# by simply not calling check_jump. So we only need to check general state:
-	# being grounded or not being hurt (which is a non-action state)
-	return is_on_floor() and not is_hurt()
-
-
 ## Process horizontal move input and return next grounded speed along X
 func _compute_next_grounded_speed_x(_delta: float) -> float:
 	var next_grounded_speed_x
@@ -698,8 +690,7 @@ func move_grounded_free(delta: float):
 
 
 func check_jump():
-	var should_jump := jump_intention and _can_jump()
-	if should_jump:
+	if jump_intention:
 		# Consume intention and jump
 		jump_intention = false
 		start_jump()
