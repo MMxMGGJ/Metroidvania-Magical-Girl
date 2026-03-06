@@ -253,10 +253,6 @@ var range_attack_intention: bool
 var hold_range_attack_intention: bool
 
 
-@onready var sfx_manager: SFXManager = InGameManager.sfx_manager
-@onready var fx_manager: FXManager = get_tree().get_first_node_in_group(&"fx_manager")
-
-
 func _ready():
 	initialize()
 	setup()
@@ -828,7 +824,7 @@ func spawn_fx_trail_and_start_tracking_self():
 	# Trails automatically adjust their relative point positions
 	# to their own position to track target, so their own position doesn't matter,
 	# so just pass ZERO
-	var fx_trail := fx_manager.spawn_fx(fx_trail_prefab, Vector2.ZERO) as Trail2D
+	var fx_trail := InGameManager.fx_manager.spawn_fx(fx_trail_prefab, Vector2.ZERO) as Trail2D
 	if not fx_trail:
 		push_error("[PlayerCharacter] spawn_fx_trail_and_start_tracking_self: fx_trail is null, ",
 			"fx_trail_prefab '%s' is not a Trail2D" % fx_trail_prefab.resource_path)

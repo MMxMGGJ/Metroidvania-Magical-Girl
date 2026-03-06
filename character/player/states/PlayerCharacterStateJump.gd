@@ -8,9 +8,6 @@ extends PlayerCharacterState
 @export var sfx: AudioStream
 
 
-@onready var sfx_manager: SFXManager = get_tree().get_first_node_in_group(&"sfx_manager")
-
-
 func _ready():
 	initialize()
 
@@ -51,7 +48,7 @@ func on_enter():
 	# Apply upward velocity
 	character.velocity.y = -character.jump_speed
 
-	sfx_manager.spawn_sfx(sfx)
+	InGameManager.sfx_manager.spawn_sfx(sfx)
 
 
 # implement
