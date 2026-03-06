@@ -25,7 +25,7 @@ func get_base_animation() -> StringName:
 
 # override
 func get_tags() -> Array[StringName]:
-	return [&"CanStartAction"]
+	return [&"CanJump", &"CanMeleeAttack"]
 
 
 # override
@@ -40,11 +40,7 @@ func on_enter():
 
 # implement
 func on_physics_process(delta: float):
-	if character.move_x_intention < 0:
-		character.change_direction(MathEnums.HorizontalDirection.LEFT)
-	elif character.move_x_intention > 0:
-		character.change_direction(MathEnums.HorizontalDirection.RIGHT)
-
+	character.change_direction_to_match_move_x_intention()
 	character.move_grounded_free(delta)
 
 	if not character.is_on_floor():

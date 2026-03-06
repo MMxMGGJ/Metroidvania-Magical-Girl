@@ -43,8 +43,8 @@ func on_enter():
 
 # implement
 func on_physics_process(delta: float):
-	character.update_velocity_airborne_free(delta)
-	character.move_and_slide()
+	character.change_direction_to_match_move_x_intention()
+	character.move_airborne_free(delta)
 
 	if character.is_on_floor():
 		# Landed

@@ -493,7 +493,8 @@ func _change_state(new_state: PlayerCharacterState):
 
 # virtual
 func on_physics_process(_delta: float):
-	pass
+	if &"CanJump" in active_tags:
+		check_jump()
 
 
 ## Return true iff taking player horizontal input into account for move intention X
@@ -645,6 +646,13 @@ func update_current_attribute(attribute_name: StringName):
 	current_attributes[attribute_name] = final_multiplier * base_attributes[attribute_name]
 
 
+func change_direction_to_match_move_x_intention():
+	if move_x_intention < 0:
+		change_direction(MathEnums.HorizontalDirection.LEFT)
+	elif move_x_intention > 0:
+		change_direction(MathEnums.HorizontalDirection.RIGHT)
+
+
 ## Change character direction, updating directed parent and all its children
 func change_direction(horizontal_direction: MathEnums.HorizontalDirection):
 	direction = horizontal_direction
@@ -686,7 +694,6 @@ func update_velocity_grounded_free(delta: float):
 ## Move character when grounded with free control
 func move_grounded_free(delta: float):
 	update_velocity_grounded_free(delta)
-	check_jump()
 	move_and_slide()
 
 
@@ -699,7 +706,7 @@ func check_jump():
 
 
 func start_jump():
-	set_next_state_by_name(&"Jump")
+	change_state_by_name(&"Jump")
 
 
 ## Process horizontal move input and return next airborne speed along X
@@ -734,7 +741,7 @@ func apply_gravity_if_grounded(delta: float):
 
 
 ## Move character when airborne with free control
-func _move_airborne_free(delta: float):
+func move_airborne_free(delta: float):
 	update_velocity_airborne_free(delta)
 	move_and_slide()
 

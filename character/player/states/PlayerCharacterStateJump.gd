@@ -53,6 +53,7 @@ func on_enter():
 
 # implement
 func on_physics_process(delta: float):
+	character.change_direction_to_match_move_x_intention()
 	character.update_velocity_airborne_free(delta)
 
 	# Check hold jump
