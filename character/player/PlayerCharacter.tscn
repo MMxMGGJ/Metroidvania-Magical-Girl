@@ -7,8 +7,10 @@
 [ext_resource type="Script" uid="uid://dgtjuh5dhnow" path="res://character/player/states/PlayerCharacterStateIdleRun.gd" id="4_4yu7e"]
 [ext_resource type="SpriteFrames" uid="uid://pbdcqaa8r6y1" path="res://character/player/animations/sprite_frames_player_character.tres" id="4_72uy0"]
 [ext_resource type="Script" uid="uid://dxg2poxsk8tgt" path="res://character/player/states/PlayerCharacterStateFall.gd" id="5_4yu7e"]
+[ext_resource type="Script" uid="uid://ct2tua0w730pe" path="res://character/player/states/PlayerCharacterStateMeleeAttack.gd" id="6_dhyjg"]
 [ext_resource type="Script" uid="uid://byr408dhtl1wq" path="res://character/player/states/PlayerCharacterStateJump.gd" id="6_g7i8e"]
 [ext_resource type="AudioStream" uid="uid://5uyybxx036c" path="res://audio/sfx/SFX_Jump.ogg" id="7_0xanw"]
+[ext_resource type="AudioStream" uid="uid://bivl6vkg6jh7s" path="res://audio/sfx/SFX_Melee_Attack1.ogg" id="7_rjsrs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t1f2q"]
 size = Vector2(104, 258)
@@ -29,15 +31,6 @@ move_box_shape = NodePath("MoveBoxShape2D")
 hurt_box = NodePath("HurtBox")
 metadata/_custom_type_script = "uid://d2dg6lgxnwj7x"
 
-[node name="PlayerCharacterAnimationController" type="Node" parent="." unique_id=781347943 node_paths=PackedStringArray("character", "animation_player")]
-script = ExtResource("2_xudxr")
-character = NodePath("..")
-animation_player = NodePath("AnimationPlayer")
-metadata/_custom_type_script = "uid://t0j0gtj5gvj3"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerCharacterAnimationController" unique_id=1168309820]
-libraries/ = ExtResource("3_lk3et")
-
 [node name="States" type="Node" parent="." unique_id=1674336456]
 
 [node name="PlayerCharacterStateIdle" type="Node" parent="States" unique_id=1872110354]
@@ -52,6 +45,20 @@ metadata/_custom_type_script = "uid://dxg2poxsk8tgt"
 script = ExtResource("6_g7i8e")
 sfx = ExtResource("7_0xanw")
 metadata/_custom_type_script = "uid://byr408dhtl1wq"
+
+[node name="PlayerCharacterStateMeleeAttack" type="Node" parent="States" unique_id=1527437553]
+script = ExtResource("6_dhyjg")
+sfx = ExtResource("7_rjsrs")
+metadata/_custom_type_script = "uid://ct2tua0w730pe"
+
+[node name="PlayerCharacterAnimationController" type="Node" parent="." unique_id=781347943 node_paths=PackedStringArray("character", "animation_player")]
+script = ExtResource("2_xudxr")
+character = NodePath("..")
+animation_player = NodePath("AnimationPlayer")
+metadata/_custom_type_script = "uid://t0j0gtj5gvj3"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerCharacterAnimationController" unique_id=1168309820]
+libraries/ = ExtResource("3_lk3et")
 
 [node name="DirectedParent" type="Node2D" parent="." unique_id=849408829]
 

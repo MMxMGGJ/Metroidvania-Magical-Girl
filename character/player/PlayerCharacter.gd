@@ -383,6 +383,8 @@ func _physics_process(delta: float):
 func on_physics_process(_delta: float):
 	if &"CanJump" in active_tags:
 		check_jump()
+	if &"CanMeleeAttack" in active_tags:
+		check_melee_attack()
 
 
 ## Return state with passed name
@@ -698,6 +700,13 @@ func check_jump():
 
 func start_jump():
 	change_state_by_name(&"Jump")
+
+
+func check_melee_attack():
+	if melee_attack_intention:
+		# Consume intention and attack
+		melee_attack_intention = false
+		change_state_by_name(&"MeleeAttack")
 
 
 ## Process horizontal move input and return next airborne speed along X

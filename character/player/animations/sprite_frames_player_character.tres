@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://djnr5rr8x2kfl" path="res://character/player/sprites/proto spritesheet_player_character_Idle 28% (mockup scale).webp" id="1_73jd3"]
 [ext_resource type="Texture2D" uid="uid://kr6vlu50knw4" path="res://character/player/sprites/proto spritesheet_player_character_Run 28% (mockup scale).webp" id="2_xlb1x"]
+[ext_resource type="Texture2D" uid="uid://dbdiij5ftbgx5" path="res://character/player/sprites/Meleeattack_sprite 28%.webp" id="3_00c3b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xlb1x"]
 atlas = ExtResource("2_xlb1x")
@@ -62,6 +63,42 @@ region = Rect2(0, 906, 423, 302)
 [sub_resource type="AtlasTexture" id="AtlasTexture_m5o6p"]
 atlas = ExtResource("2_xlb1x")
 region = Rect2(423, 302, 423, 302)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gm7e"]
+atlas = ExtResource("3_00c3b")
+region = Rect2(0, 0, 423, 302)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7ut8"]
+atlas = ExtResource("3_00c3b")
+region = Rect2(423, 0, 423, 302)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6il3k"]
+atlas = ExtResource("3_00c3b")
+region = Rect2(846, 0, 423, 302)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agtht"]
+atlas = ExtResource("3_00c3b")
+region = Rect2(1269, 0, 423, 302)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skc0y"]
+atlas = ExtResource("3_00c3b")
+region = Rect2(1692, 0, 423, 302)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8t4ds"]
+atlas = ExtResource("3_00c3b")
+region = Rect2(0, 302, 423, 302)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2aiy"]
+atlas = ExtResource("3_00c3b")
+region = Rect2(423, 302, 423, 302)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bn0qc"]
+atlas = ExtResource("3_00c3b")
+region = Rect2(846, 302, 423, 302)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnvhp"]
+atlas = ExtResource("3_00c3b")
+region = Rect2(1269, 302, 423, 302)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_00c3b"]
 atlas = ExtResource("2_xlb1x")
@@ -159,6 +196,43 @@ animations = [{
 }],
 "loop": false,
 "name": &"Jump",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5gm7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t7ut8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6il3k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agtht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skc0y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8t4ds")
+}],
+"loop": false,
+"name": &"MeleeAttack1",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n2aiy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bn0qc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnvhp")
+}],
+"loop": false,
+"name": &"MeleeAttack2",
 "speed": 12.0
 }, {
 "frames": [{
