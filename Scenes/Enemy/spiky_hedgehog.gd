@@ -126,6 +126,28 @@ func _on_timer_timeout():
 
 
 func _on_hedgehog_hitbox_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Ground") and current_state == States.PATROL:
+	if body.is_in_group("Ground"):
 		is_need_jump = true
 		velocity.y = -500
+# DO RETURN STATE AND USE JUMPING IN THERE
+
+func _on_hedgehog_hitbox_area_entered(area: Area2D) -> void:
+	var damage = Global.playerDamageAmount
+	if area == Global.playerDamageArea:
+		take_damage(damage)
+		
+func take_damage(damage):
+	HEALTH -= damage
+	taking_damage = true
+	if HEALTH <= MIN_HEALTH:
+		HEALTH = MIN_HEALTH
+		dead = true
+		current_state = States.DEATH
+	print("health is",HEALTH)
+
+
+func _on_hedgehog_deal_damage_area_area_entered(area: Area2D) -> void:
+	if area == Global.playerHitBox:
+		is_deal_damage = true
+		await get_tree().create_timer(1.0).timeout
+		is_deal_damage = false

@@ -125,4 +125,6 @@ position = Vector2(-3, 32)
 shape = SubResource("CircleShape2D_80c6c")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="HedgehogHitbox" to="." method="_on_hedgehog_hitbox_area_entered"]
 [connection signal="body_entered" from="HedgehogHitbox" to="." method="_on_hedgehog_hitbox_body_entered"]
+[connection signal="area_entered" from="HedgehogDealDamageArea" to="." method="_on_hedgehog_deal_damage_area_area_entered"]

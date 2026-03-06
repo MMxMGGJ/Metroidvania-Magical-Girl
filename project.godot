@@ -51,6 +51,7 @@ enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/hyper-god
 
 Player=""
 Ground=""
+Enemy=""
 
 [input]
 
