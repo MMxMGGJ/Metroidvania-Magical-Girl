@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://cavhtluqml8fl"]
+
+[ext_resource type="Texture2D" uid="uid://tuh2s8l46qck" path="res://icon.svg" id="1_exj1a"]
+[ext_resource type="Script" uid="uid://c738t6ov5dg1p" path="res://Scenes/Enemy/brittle_mosquito.gd" id="1_py2wm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_py2wm"]
+atlas = ExtResource("1_exj1a")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ox5lj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_py2wm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_py2wm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_snr18"]
+radius = 35.057095
+
+[node name="brittle_mosquito" type="CharacterBody2D" unique_id=1770129410]
+script = ExtResource("1_py2wm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=87344117]
+scale = Vector2(0.42, 0.42)
+sprite_frames = SubResource("SpriteFrames_ox5lj")
+frame_progress = 0.6693757
+
+[node name="RayCastHorizontal" type="RayCast2D" parent="AnimatedSprite2D" unique_id=892063543]
+target_position = Vector2(-1000, 0)
+
+[node name="RayCastVertical" type="RayCast2D" parent="AnimatedSprite2D" unique_id=1062384989]
+target_position = Vector2(0, 300)
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="AnimatedSprite2D" unique_id=308669311]
+scale = Vector2(8.59, 1)
+shape = SubResource("RectangleShape2D_py2wm")
+target_position = Vector2(0, 500)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=596373916]
+shape = SubResource("CircleShape2D_snr18")
+
+[node name="Timer" type="Timer" parent="." unique_id=2067539943]
+wait_time = 4.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

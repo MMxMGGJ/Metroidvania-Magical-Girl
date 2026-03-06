@@ -1,0 +1,37 @@
+[remap]
+
+importer="ldtk.import"
+type="PackedScene"
+uid="uid://d0y1ygytnxdqs"
+path="res://.godot/imported/MGLevels.ldtk-7c4b7087f8129f924a48a510d2170de0.scn"
+
+[deps]
+
+files=["res:///tilesets/tileset_96px.res", "res:///levels/Secret_Corridor.scn", "res:///levels/SafeRoom.scn", "res:///levels/Secret_Corridor2.scn", "res:///levels/Underground_Temple_Entrance.scn", "res:///levels/Underground_Temple3.scn", "res:///levels/Underground_Temple4.scn", "res:///levels/Underground_Temple5.scn", "res:///levels/Underground_Temple6.scn", "res:///levels/Underground_Temple2.scn", "res:///levels/Underground_Temple.scn", "res:///levels/Underground_Temple_BossRoom.scn", "res:///levels/Cemetery_of_Petrified_Souls_Entrance.scn", "res:///levels/Cemetery_of_Petrified_Souls_Entrance2.scn", "res:///levels/Cemetery_of_Petrified_Souls_Entrance3.scn", "res:///levels/Cemetery_of_Petrified_Souls.scn", "res:///levels/Cemetery_of_Petrified_Souls4.scn", "res:///levels/Cemetery_of_Petrified_Souls5.scn", "res:///levels/Cemetery_of_Petrified_Souls7.scn", "res:///levels/ELEVATOR.scn", "res:///levels/Cemetery_of_Petrified_Souls8.scn", "res:///levels/Cemetery_of_Petrified_Souls9.scn", "res:///levels/Cemetery_of_Petrified_Souls2.scn", "res:///levels/Soul_Manufacturing_Facility.scn", "res:///levels/Cemetery_of_Petrified_Souls3.scn", "res:///levels/Cemetery_of_Petrified_Souls6.scn", "res:///levels/Soul_Manufacturing_Facility2.scn", "res:///levels/Soul_Manufacturing_Facility3.scn", "res:///levels/Soul_Manufacturing_Facility4.scn", "res:///levels/Soul_Manufacturing_Facility_BOSS_ROOM.scn", "res://.godot/imported/MGLevels.ldtk-7c4b7087f8129f924a48a510d2170de0.scn"]
+
+source_file="res://MGLevels.ldtk"
+dest_files=["res://.godot/imported/MGLevels.ldtk-7c4b7087f8129f924a48a510d2170de0.scn", "res:///tilesets/tileset_96px.res", "res:///levels/Secret_Corridor.scn", "res:///levels/SafeRoom.scn", "res:///levels/Secret_Corridor2.scn", "res:///levels/Underground_Temple_Entrance.scn", "res:///levels/Underground_Temple3.scn", "res:///levels/Underground_Temple4.scn", "res:///levels/Underground_Temple5.scn", "res:///levels/Underground_Temple6.scn", "res:///levels/Underground_Temple2.scn", "res:///levels/Underground_Temple.scn", "res:///levels/Underground_Temple_BossRoom.scn", "res:///levels/Cemetery_of_Petrified_Souls_Entrance.scn", "res:///levels/Cemetery_of_Petrified_Souls_Entrance2.scn", "res:///levels/Cemetery_of_Petrified_Souls_Entrance3.scn", "res:///levels/Cemetery_of_Petrified_Souls.scn", "res:///levels/Cemetery_of_Petrified_Souls4.scn", "res:///levels/Cemetery_of_Petrified_Souls5.scn", "res:///levels/Cemetery_of_Petrified_Souls7.scn", "res:///levels/ELEVATOR.scn", "res:///levels/Cemetery_of_Petrified_Souls8.scn", "res:///levels/Cemetery_of_Petrified_Souls9.scn", "res:///levels/Cemetery_of_Petrified_Souls2.scn", "res:///levels/Soul_Manufacturing_Facility.scn", "res:///levels/Cemetery_of_Petrified_Souls3.scn", "res:///levels/Cemetery_of_Petrified_Souls6.scn", "res:///levels/Soul_Manufacturing_Facility2.scn", "res:///levels/Soul_Manufacturing_Facility3.scn", "res:///levels/Soul_Manufacturing_Facility4.scn", "res:///levels/Soul_Manufacturing_Facility_BOSS_ROOM.scn", "res://.godot/imported/MGLevels.ldtk-7c4b7087f8129f924a48a510d2170de0.scn"]
+
+[params]
+
+World=""
+group_world_layers=false
+Level=""
+pack_levels=true
+Layer=""
+layers_always_visible=false
+Tileset=""
+tileset_custom_data=false
+integer_grid_tilesets=true
+atlas_texture_type=0
+Entity=""
+resolve_entityrefs=true
+use_entity_placeholders=false
+Post Import=""
+tileset_post_import=""
+entities_post_import=""
+level_post_import=""
+world_post_import=""
+Debug=""
+force_tileset_reimport=true
+verbose_output=false

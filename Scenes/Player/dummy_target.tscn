@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cixytu28x4wl3"]
+
+[ext_resource type="Script" uid="uid://tstqprenvn35" path="res://Scenes/Player/dummy_target.gd" id="1_7rr1y"]
+[ext_resource type="Texture2D" uid="uid://tuh2s8l46qck" path="res://icon.svg" id="1_updrp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7rr1y"]
+size = Vector2(48, 47)
+
+[node name="DummyTarget" type="CharacterBody2D" unique_id=550574579 groups=["Player"]]
+script = ExtResource("1_7rr1y")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=633758865]
+scale = Vector2(0.355, 0.355)
+texture = ExtResource("1_updrp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1635138012]
+position = Vector2(1, -0.5)
+shape = SubResource("RectangleShape2D_7rr1y")

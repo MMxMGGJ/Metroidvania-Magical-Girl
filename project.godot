@@ -41,6 +41,10 @@ window/size/viewport_height=1440
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[dotnet]
+
+project/assembly_name="Metroidvania Magical Girl"
+
 [editor]
 
 movie_writer/video_quality=0.9
